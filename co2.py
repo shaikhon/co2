@@ -14,10 +14,11 @@ df = pd.concat(df_list)
 
 '---'
 import plotly.express as px
-
+order={'Sector':['Electricity', 'Desalination','Petrochemicals','Refinery','Cement','Steel']}
 fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
                         hover_data=["CO2 emission (Mton/yr)"],
                         size="CO2 emission (Mton/yr)",
+                        category_orders=order,
                         color="Sector", zoom=4.2, width=800, height=600)
 fig.update_layout(mapbox_style="carto-positron")  #carto-positron
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
