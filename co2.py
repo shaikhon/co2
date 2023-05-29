@@ -3,10 +3,15 @@ import streamlit as st
 import pandas as pd
 import glob
 
-
 fnames = glob.glob('./data/*.csv')
-fnames
 
+df_list = []
+for f in fnames:
+    print(f)
+    df_list.append(pd.read_csv(f))
+
+df = pd.concat(df_list)
+df
 # df = pd.read_csv('./data/')
 
 
