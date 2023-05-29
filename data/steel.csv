@@ -1,0 +1,12 @@
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector
+1,Al kharj,Riyadh,24.383561,47.245944,0.91,Steel
+2,Al kharj,Riyadh,24.50854,46.938565,0.36,Steel
+3,Al kharj,Riyadh,24.511002,46.939354,0.00,Steel
+4,Dammam,Ash sharqiyah,26.240563,49.988447,3.60,Steel
+5,Dammam,Ash sharqiyah,26.245456,49.969394,0.96,Steel
+6,Dammam,Ash sharqiyah,26.245566,49.965261,0.00,Steel
+7,Dammam,Ash sharqiyah,26.27843,49.948378,0.00,Steel
+8,Jazan,Jazan,17.297968,42.351901,1.80,Steel
+9,Jeddah,Makkah,21.290221,39.183556,2.64,Steel
+10,Jubail,Ash sharqiyah,26.9983,49.478073,0.72,Steel
+11,Jubail,Ash sharqiyah,27.016106,49.583595,7.20,Steel

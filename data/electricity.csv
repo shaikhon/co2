@@ -1,0 +1,75 @@
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Primary Fuel ,Unit Type 
+1,Abha,Aseer,18.245246,42.578082,1.93,Electicity,Crude,Gas Turbine
+2,Abqaiq,Ash sharqiyah,25.930097,49.687228,1.41,Electicity,Gas,Gas Turbine
+3,Al-Baha,Al-Baha,20.092916,41.439115,0.08,Electicity,Diesel,Diesel Generator
+4,Al-Hawiyah,Ash sharqiyah,24.803778,49.352636,0.43,Electicity,Gas,Gas Turbine
+5,Al-Oyun,Ash sharqiyah,25.6512,49.38607,1.34,Electicity,Gas,Gas Turbine
+6,Al-Oyun,Ash sharqiyah,25.674955,49.433096,1.09,Electicity,Gas,Gas Turbine
+7,Al-Qaisumah,Ash sharqiyah,28.349054,46.04858,0.21,Electicity,Diesel,Gas Turbine
+8,Al-Quriyat,Al-Jouf,31.254091,37.42482,1.53,Electicity,Crude,Gas Turbine
+9,Al-Wajh,Tabuk,26.224892,36.487345,0.67,Electicity,Diesel,Diesel Generator
+10,Arar,"
+Al Hudud ash Shamaliyah",30.927426,41.05595,1.06,Electicity,Diesel,Gas Turbine
+11,Asir,Aseer,18.245213,42.578117,1.70,Electicity,Diesel,Diesel Generator
+12,Bisha,Aseer,19.987498,42.393332,0.95,Electicity,Diesel,Gas Turbine
+13,Buraydah,Qassim,26.207435,44.011836,5.37,Electicity,Crude,Gas Turbine
+14,Buraydah,Qassim,26.401364,43.94387,0.05,Electicity,Diesel,Gas Turbine
+15,Dammam,Ash sharqiyah,26.253019,49.994391,0.26,Electicity,HFO,Diesel Generator
+16,Dammam,Ash sharqiyah,26.380781,50.09445,0.19,Electicity,Gas,Gas Turbine
+17,Dhuruma,Riyadh,24.78538,45.627409,4.63,Electicity,Gas,Gas Turbine
+18,Duba,Tabuk,27.36748,35.659135,1.72,Electicity,Diesel,Gas Turbine
+19,Ghazlan,Ash sharqiyah,26.855148,49.894505,5.70,Electicity,Gas,Steam Turbine
+20,Hail,Hail,27.46733,41.742809,2.52,Electicity,Crude,Gas Turbine
+21,Hail,Hail,27.535166,41.700649,0.08,Electicity,Diesel,Gas Turbine
+22,Jeddah,Makkah,21.211338,39.174177,8.87,Electicity,Diesel,Gas Turbine
+23,Jeddah,Makkah,21.432942,39.20449,2.63,Electicity,Crude,Gas Turbine
+24,Jeddah,Makkah,22.534155,39.117076,0.00,Electicity,Diesel,Diesel Generator
+25,Juaymah,Ash sharqiyah,26.800306,50.003592,0.00,Electicity,Gas,Gas Turbine
+26,Juaymah,Ash sharqiyah,26.800313,50.003569,1.34,Electicity,Gas,Gas Turbine
+27,Jubail,Ash sharqiyah,26.968521,49.573071,0.81,Electicity,Gas,Gas Turbine
+28,Jubail,Ash sharqiyah,27.05776613,49.58940591,0.79,Electicity,Gas,Gas Turbine
+29,Jubail,Ash sharqiyah,27.113049,49.320389,1.91,Electicity,Gas,Gas Turbine
+30,Jubail,Ash sharqiyah,27.146168,49.206911,1.21,Electicity,Gas,Gas Turbine
+31,Layla,Riyadh,22.309141,46.662903,0.26,Electicity,Diesel,Gas Turbine
+32,Madinah,Madinah,24.52573,39.67619,0.36,Electicity,Diesel,Gas Turbine
+33,Mahleiah,Jazan,16.938103,42.63275,3.93,Electicity,Diesel,Diesel Generator
+34,Makkah,Makkah,21.472587,39.799836,0.28,Electicity,Diesel,Diesel Generator
+35,Manifa,Ash sharqiyah,27.584024,48.967209,1.01,Electicity,Gas,Gas Turbine
+36,Najran,Najran,17.598208,44.337082,1.26,Electicity,Crude,Gas Turbine
+37,Qatif,Ash sharqiyah,26.791938,49.944454,0.39,Electicity,Gas,Gas Turbine
+38,Qurayyah,Ash sharqiyah,25.826389,50.134066,5.12,Electicity,Gas,Combined Cycle
+39,Qurayyah,Ash sharqiyah,25.844303,50.126108,10.35,Electicity,Gas,Steam Turbine
+40,Qurayyah,Ash sharqiyah,25.860071,50.116791,4.66,Electicity,Gas,Steam Turbine
+41,Rabigh,Makkah,22.628931,39.046689,3.71,Electicity,Gas,Combined Cycle
+42,Rabigh,Makkah,22.629175,39.046062,6.34,Electicity,HFO,Steam Turbine
+43,Rabigh,Makkah,22.652542,39.036582,4.05,Electicity,HFO,Steam Turbine
+44,Rabigh,Makkah,22.66151,39.03146,9.89,Electicity,Crude,Combined Cycle
+45,Rafha,"
+Al Hudud ash Shamaliyah",29.487585,43.542578,0.86,Electicity,Crude,Diesel Generator
+46,Ras Tanura,Ash sharqiyah,26.69358,50.103258,0.96,Electicity,Gas,Gas Turbine
+47,Ras Tanura,Ash sharqiyah,26.800308,50.003599,0.41,Electicity,Gas,Gas Turbine
+48,Riyadh,Riyadh,24.416268,47.020404,9.29,Electicity,Crude,Gas Turbine
+49,Riyadh,Riyadh,24.518775,46.869812,0.18,Electicity,Gas,Gas Turbine
+50,Riyadh,Riyadh,24.568417,46.883271,1.03,Electicity,Gas,Gas Turbine
+51,Riyadh,Riyadh,24.595175,46.572805,4.74,Electicity,Crude,Gas Turbine
+52,Riyadh,Riyadh,24.646238,46.765009,0.00,Electicity,Diesel,Gas Turbine
+53,Riyadh,Riyadh,24.761381,46.592317,0.26,Electicity,Crude,Gas Turbine
+54,Riyadh,Riyadh,24.782816,45.605397,4.47,Electicity,Gas,Gas Turbine
+55,Riyadh,Riyadh,24.949441,47.063948,7.38,Electicity,Crude,Combined Cycle
+56,Riyadh,Riyadh,26.203885,44.016141,0.00,Electicity,Diesel,Gas Turbine
+57,Safaniyah,Ash sharqiyah,27.999686,48.762213,0.00,Electicity,Gas,Gas Turbine
+58,Sakaka,Al-Jouf,29.777282,40.011669,0.90,Electicity,Crude,Gas Turbine
+59,Sharorah,Najran,17.32917,47.093153,0.68,Electicity,Diesel,Diesel Generator
+60,Shuaibah,Makkah,20.632009,39.551269,15.43,Electicity,Crude,Combined Cycle
+61,Shuqaiq,Jazan,17.640572,42.107882,8.10,Electicity,HFO,Steam Turbine
+62,Tabarjal,Al-Jouf,30.455108,38.213887,0.23,Electicity,Diesel,Diesel Generator
+63,Tabuk,Tabuk,28.471087,36.519616,2.79,Electicity,Diesel,Diesel Generator
+64,Turaif,"
+Al Hudud ash Shamaliyah",31.651758,38.860297,2.25,Electicity,Gas,Gas Turbine
+65,Uthmaniyah,Ash sharqiyah,25.187384,49.306542,0.00,Electicity,Gas,Gas Turbine
+66,Uthmaniyah,Ash sharqiyah,25.18746,49.30655,1.34,Electicity,Gas,Gas Turbine
+67,Uthmaniyah,Ash sharqiyah,25.210762,49.287793,1.97,Electicity,Gas,Gas Turbine
+68,Wadi ad-Dawasir,Riyadh,20.393499,45.207924,1.15,Electicity,Crude,Gas Turbine
+69,Yanbu,Madinah,23.8620631,38.3828834,10.12,Electicity,HFO/gas,Steam Turbine
+70,Yanbu,Madinah,23.905315,38.322477,2.53,Electicity,HFO,Steam Turbine
+71,Yanbu,Madinah,23.973221,38.216947,3.51,Electicity,Gas,Gas Turbine

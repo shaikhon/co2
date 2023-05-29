@@ -1,0 +1,40 @@
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector
+1,Jeddah,Makkah,21.44495097,39.18355921,0.00,Petrochemicals
+2,Jubail,Ash sharqiyah,26.942451,49.478986,6.30,Petrochemicals
+3,Jubail,Ash sharqiyah,26.953461,49.587625,3.05,Petrochemicals
+4,Jubail,Ash sharqiyah,26.99875426,49.56924929,0.35,Petrochemicals
+5,Jubail,Ash sharqiyah,27.003083,49.56367,0.00,Petrochemicals
+6,Jubail,Ash sharqiyah,27.00597246,49.55493623,0.48,Petrochemicals
+7,Jubail,Ash sharqiyah,27.006183,49.563029,0.00,Petrochemicals
+8,Jubail,Ash sharqiyah,27.02507232,49.52488399,4.05,Petrochemicals
+9,Jubail,Ash sharqiyah,27.02619722,49.54503349,0.03,Petrochemicals
+10,Jubail,Ash sharqiyah,27.02729497,49.53518941,0.07,Petrochemicals
+11,Jubail,Ash sharqiyah,27.029311,49.559731,1.35,Petrochemicals
+12,Jubail,Ash sharqiyah,27.03447964,49.57024736,2.23,Petrochemicals
+13,Jubail,Ash sharqiyah,27.03455733,49.58888302,2.60,Petrochemicals
+14,Jubail,Ash sharqiyah,27.038885,49.562255,1.47,Petrochemicals
+15,Jubail,Ash sharqiyah,27.04070772,49.61630071,0.00,Petrochemicals
+16,Jubail,Ash sharqiyah,27.04457662,49.58371631,0.34,Petrochemicals
+17,Jubail,Ash sharqiyah,27.045613,49.578679,0.00,Petrochemicals
+18,Jubail,Ash sharqiyah,27.04603874,49.54992815,2.27,Petrochemicals
+19,Jubail,Ash sharqiyah,27.05454386,49.58333175,0.98,Petrochemicals
+20,Jubail,Ash sharqiyah,27.05718951,49.5947092,7.80,Petrochemicals
+21,Jubail,Ash sharqiyah,27.06098796,49.56577773,0.38,Petrochemicals
+22,Jubail,Ash sharqiyah,27.064543,49.557138,1.08,Petrochemicals
+23,Jubail,Ash sharqiyah,27.065156,49.557838,0.56,Fertilizer and Ammonia
+24,Jubail,Ash sharqiyah,27.06626325,49.57109026,0.56,Petrochemicals
+25,Jubail,Ash sharqiyah,27.0693915,49.56573813,1.91,Fertilizer and Ammonia
+26,Jubail,Ash sharqiyah,27.069544,49.565368,2.35,Petrochemicals
+27,Jubail,Ash sharqiyah,27.0736,49.575357,4.90,Petrochemicals
+28,Jubail,Ash sharqiyah,27.07497731,49.5705862,2.99,Fertilizer and Ammonia
+29,Rabigh,Makkah,22.7162009,39.01922709,2.14,Petrochemicals
+30,Ras Al-khair,Ash sharqiyah,27.538253,49.194212,7.43,Fertilizer and Ammonia
+31,Wa’ad Al Shamal,"
+Al Hudud ash Shamaliyah",31.821807,39.048781,1.43,Fertilizer and Ammonia
+32,Yanbu,Madinah,23.93852908,38.30966929,1.01,Petrochemicals
+33,Yanbu,Madinah,23.94069875,38.30999153,0.17,Petrochemicals
+34,Yanbu,Madinah,23.94534652,38.31550524,1.28,Petrochemicals
+35,Yanbu,Madinah,23.98236728,38.2611339,2.61,Petrochemicals
+36,Yanbu,Madinah,23.98482545,38.22372922,2.53,Petrochemicals
+37,Yanbu,Madinah,23.98953837,38.24454414,5.58,Petrochemicals
+38,Yanbu,Madinah,23.99832509,38.23634428,0.42,Petrochemicals

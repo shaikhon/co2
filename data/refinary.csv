@@ -1,0 +1,11 @@
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector
+1,Jazan,Jazan,17.286266,42.368752,6.86,Refinery
+2,Jeddah,Makkah,21.448921,39.185166,0.00,Refinery
+3,Jubail,Ash sharqiyah,26.960402,49.4995,6.49,Refinery
+4,Jubail,Ash sharqiyah,27.044885,49.606423,4.28,Refinery
+5,Rabigh,Makkah,22.715454,39.018777,5.02,Refinery
+6,Ras Tanura,Ash sharqiyah,26.698175,50.098575,8.92,Refinery
+7,Riyadh,Riyadh,24.520087,46.868961,1.97,Refinery
+8,Yanbu,Madinah,23.956472,38.291164,4.06,Refinery
+9,Yanbu,Madinah,23.962398,38.278305,5.93,Refinery
+10,Yanbu,Madinah,23.978091,38.237258,5.89,Refinery

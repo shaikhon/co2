@@ -1,0 +1,38 @@
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Primary Fuel (if appicable),Unit Type (if applicable)
+1,Al-khobar,Ash sharqiyah,26.178517,50.209648,7.23,Desalination,Gas,MSF
+2,Al-khobar,Ash sharqiyah,26.184169,50.210745,0.90,Desalination,,RO
+3,Al-Lith,Makkah,20.130432,40.266355,0.10,Desalination,,MED
+4,Al-Qunfudah,Makkah,19.076008,41.164443,0.14,Desalination,,MED
+5,Al-Wajh,Tabuk,26.239517,36.450162,0.06,Desalination,,MED
+6,Aziziyah,Makkah,22.09579301,39.03268995,0.01,Desalination,,RO
+7,Birik,Makkah,18.210193,41.525788,0.02,Desalination,,MSF
+8,Duba,Tabuk,27.360353,35.664256,0.14,Desalination,,RO
+9,Duba,Tabuk,27.362403,35.661683,0.01,Desalination,,RO
+10,Farasan,Jazan,16.688339,42.097215,0.06,Desalination,,MED
+11,Haql,Tabuk,29.290817,34.929791,0.01,Desalination,,RO
+12,Jeddah,Makkah,21.449216,39.177539,0.07,Desalination,,RO
+13,Jeddah,Makkah,21.551694,39.118315,0.39,Desalination,HFO,MSF
+14,Jubail,Ash sharqiyah,21.717067,39.084133,0.12,Desalination,,RO
+15,Jubail,Ash sharqiyah,26.896788,49.777222,12.55,Desalination,Gas,MSF
+16,Jubail,Ash sharqiyah,26.93773723,49.47679714,0.20,Desalination,,RO
+17,Jubail,Ash sharqiyah,27.065501,49.610236,0.11,Desalination,,RO
+18,Jubail,Ash sharqiyah,27.0701,49.606502,9.67,Desalination,Gas,Combined Cycle
+19,Khafji,Ash sharqiyah,28.509085,48.459358,0.07,Desalination,,MSF
+20,Rabigh,Makkah,22.705045,39.019536,2.86,Desalination,HFO,RO
+21,Rabigh,Makkah,22.778589,38.962163,0.11,Desalination,,MED
+22,Ras Al-khair,Ash sharqiyah,27.533819,49.14202,8.30,Desalination,Gas,Combined Cycle
+23,Shuaibah,Makkah,20.672735,39.527907,0.17,Desalination,,RO
+24,Shuaibah,Makkah,20.677349,39.525225,8.12,Desalination,HFO,MED
+25,Shuaibah,Makkah,20.683561,39.520803,3.60,Desalination,Crude,Steam Turbine
+26,Shuaibah,Makkah,20.68449,39.520174,6.83,Desalination,,MSF
+27,Shuaibah,Makkah,20.686758,39.516417,0.28,Desalination,,RO
+28,Shuaibah,Makkah,20.690362,39.515934,0.45,Desalination,,RO
+29,Shuqaiq,Jazan,17.659082,42.076986,3.32,Desalination,Crude,RO
+30,Shuqaiq,Jazan,17.659849,42.066735,0.50,Desalination,,RO
+31,Shuqaiq,Jazan,17.660908,42.062642,1.13,Desalination,HFO,MSF
+32,Ummlujj,Tabuk,25.00649,37.272619,0.09,Desalination,,MED
+33,Yanbu,Madinah,23.86057,38.382971,4.23,Desalination,,MSF
+34,Yanbu,Madinah,23.87317,38.366531,2.15,Desalination,HFO,MED
+35,Yanbu,Madinah,23.905777,38.323831,0.33,Desalination,,MED
+36,Yanbu,Madinah,23.939017,38.231805,0.06,Desalination,,RO
+37,Yanbu,Madinah,23.972081,38.217898,0.79,Desalination,,MSF
