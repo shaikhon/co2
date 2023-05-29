@@ -15,7 +15,7 @@ df = pd.concat(df_list)
 '---'
 import plotly.express as px
 order={'Sector':['Electricity', 'Desalination','Petrochemicals','Refinery','Cement','Steel']}
-colors=['red','blue','yellow','green','cyan','purple']
+colors=['red','blue','yellow','green','cyan','purple','orange']
 
 fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
                         hover_data=["CO2 emission (Mton/yr)"],
