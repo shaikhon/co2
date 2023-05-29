@@ -1,8 +1,7 @@
 Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector
 1,Ain Dar,Ash sharqiyah,25.68479,49.514904,4.46,Cement
 2,Alsadyah,Makkah,20.710689,39.82764,1.07,Cement
-3,Arar,"
-Al Hudud ash Shamaliyah",31.434753,39.130926,1.16,Cement
+3,Arar,Al Hudud ash Shamaliyah,31.434753,39.130926,1.16,Cement
 4,Bisha,Asir,19.518572,42.538183,5.02,Cement
 5,Buraydah,Al-Qassim,26.492852,43.96147,2.68,Cement
 6,Duba,Tabuk,27.530836,35.539284,0.96,Cement

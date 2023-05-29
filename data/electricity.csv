@@ -43,8 +43,7 @@ Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Prima
 42,Rabigh,Makkah,22.629175,39.046062,6.34,Electicity,HFO,Steam Turbine
 43,Rabigh,Makkah,22.652542,39.036582,4.05,Electicity,HFO,Steam Turbine
 44,Rabigh,Makkah,22.66151,39.03146,9.89,Electicity,Crude,Combined Cycle
-45,Rafha,"
-Al Hudud ash Shamaliyah",29.487585,43.542578,0.86,Electicity,Crude,Diesel Generator
+45,Rafha,Al Hudud ash Shamaliyah,29.487585,43.542578,0.86,Electicity,Crude,Diesel Generator
 46,Ras Tanura,Ash sharqiyah,26.69358,50.103258,0.96,Electicity,Gas,Gas Turbine
 47,Ras Tanura,Ash sharqiyah,26.800308,50.003599,0.41,Electicity,Gas,Gas Turbine
 48,Riyadh,Riyadh,24.416268,47.020404,9.29,Electicity,Crude,Gas Turbine
@@ -63,8 +62,7 @@ Al Hudud ash Shamaliyah",29.487585,43.542578,0.86,Electicity,Crude,Diesel Genera
 61,Shuqaiq,Jazan,17.640572,42.107882,8.10,Electicity,HFO,Steam Turbine
 62,Tabarjal,Al-Jouf,30.455108,38.213887,0.23,Electicity,Diesel,Diesel Generator
 63,Tabuk,Tabuk,28.471087,36.519616,2.79,Electicity,Diesel,Diesel Generator
-64,Turaif,"
-Al Hudud ash Shamaliyah",31.651758,38.860297,2.25,Electicity,Gas,Gas Turbine
+64,Turaif,Al Hudud ash Shamaliyah,31.651758,38.860297,2.25,Electicity,Gas,Gas Turbine
 65,Uthmaniyah,Ash sharqiyah,25.187384,49.306542,0.00,Electicity,Gas,Gas Turbine
 66,Uthmaniyah,Ash sharqiyah,25.18746,49.30655,1.34,Electicity,Gas,Gas Turbine
 67,Uthmaniyah,Ash sharqiyah,25.210762,49.287793,1.97,Electicity,Gas,Gas Turbine
