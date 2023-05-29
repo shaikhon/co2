@@ -41,7 +41,7 @@ fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
                         size_max=30,
                         category_orders=order,
                         color="Sector",
-                        color_discrete_sequence=colors, zoom=3, width=400, height=400)
+                        color_discrete_sequence=colors, zoom=3, width=500, height=400)
 fig.update_layout( title_text = "2022 Saudi Arabia's CO2 Emissions",
                    mapbox_style="carto-positron")  #carto-positron
 fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
