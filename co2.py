@@ -1,4 +1,5 @@
-import plotly.graph_objects as go
+# import plotly.graph_objects as go
+import plotly.express as px
 import streamlit as st
 import pandas as pd
 import glob
@@ -20,10 +21,12 @@ for f in fnames:
     df_list.append(pd.read_csv(f, index_col=False))
 
 df = pd.concat(df_list)
-
+df.drop(inplace=True, columns=['Primary Fuel','Unit Type'], errors='ignore')
 
 '---'
-import plotly.express as px
+
+st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
+
 order={'Sector':['Electricity', 'Desalination','Petrochemicals','Refinery','Cement','Steel']}
 colors=['red','blue','yellow','green','cyan','purple','orange']
 
