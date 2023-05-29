@@ -18,6 +18,7 @@ st.set_page_config(
 st.title('Green Guardians :four_leaf_clover:')
 st.header('Green Guardians :four_leaf_clover:')
 
+st.markdown("<h1 style='text-align: center; color: white;'>Green Guardians :four_leaf_clover:</h1>", unsafe_allow_html=True)
 
 
 fnames = glob.glob('./data/*.csv')
