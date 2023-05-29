@@ -1,6 +1,17 @@
 import plotly.graph_objects as go
 import streamlit as st
+import pandas as pd
+import glob
 
+
+fnames = glob.glob('./data/*.csv')
+fnames
+
+# df = pd.read_csv('./data/')
+
+
+
+'---'
 
 fig = go.Figure(go.Scattermapbox(
     fill = "toself",
