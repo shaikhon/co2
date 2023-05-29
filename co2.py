@@ -17,7 +17,7 @@ import plotly.express as px
 
 fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
                         hover_data=["CO2 emission (Mton/yr)"],
-                        color="sector", zoom=3, height=300)
+                        color="Sector", zoom=3, height=300)
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 st.plotly_chart(fig)
