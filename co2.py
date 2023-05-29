@@ -18,7 +18,7 @@ order={'Sector':['Electricity', 'Desalination','Petrochemicals','Refinery','Ceme
 colors=['red','blue','yellow','green','cyan','purple','orange']
 
 fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
-                        hover_data=["CO2 emission (Mton/yr)"],
+                        hover_data=["Sector", "CO2 emission (Mton/yr)"],
                         size="CO2 emission (Mton/yr)",
                         size_max=30,
                         category_orders=order,
