@@ -3,6 +3,16 @@ import streamlit as st
 import pandas as pd
 import glob
 
+st.set_page_config(
+    page_title="Net0thon App",
+    page_icon=":deciduous_tree:",
+    layout="wide",
+    initial_sidebar_state="collapsed",  #expanded
+    menu_items={'Get help':'mailto:obai.shaikh@gmail.com',
+                'Report a Bug':'mailto:obai.shaikh@gmail.com',
+                'About':"The Green Guardian's team effort in Net0thon to combat climate change."}
+)
+
 fnames = glob.glob('./data/*.csv')
 
 df_list = []
