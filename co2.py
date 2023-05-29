@@ -16,7 +16,6 @@ st.set_page_config(
 
 
 st.title('Green Guardians :four_leaf_clover:')
-st.header("Net0thon")
 
 
 # Read files
