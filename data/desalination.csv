@@ -1,4 +1,4 @@
-Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Primary Fuel (if appicable),Unit Type (if applicable)
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Primary Fuel,Unit Type
 1,Al-khobar,Ash sharqiyah,26.178517,50.209648,7.23,Desalination,Gas,MSF
 2,Al-khobar,Ash sharqiyah,26.184169,50.210745,0.90,Desalination,,RO
 3,Al-Lith,Makkah,20.130432,40.266355,0.10,Desalination,,MED

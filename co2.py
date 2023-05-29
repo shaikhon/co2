@@ -7,33 +7,40 @@ fnames = glob.glob('./data/*.csv')
 
 df_list = []
 for f in fnames:
-    f
-    df = pd.read_csv(f, index_col=False)
-    df
-    df_list.append(df)
+    df_list.append(pd.read_csv(f, index_col=False))
     '---'
 
 df = pd.concat(df_list)
 df
 # df = pd.read_csv('./data/')
 
+'---'
+import plotly.express as px
+
+fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
+                        hover_data=["CO2 emission (Mton/yr)"],
+                        color=["sector"], zoom=3, height=300)
+fig.update_layout(mapbox_style="open-street-map")
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+st.plotly_chart(fig)
+
 
 
 '---'
 
-fig = go.Figure(go.Scattermapbox(
-    fill = "toself",
-    lon = [-74, -70, -70, -74], lat = [47, 47, 45, 45],
-    marker = { 'size': 10, 'color': "orange" }))
-
-fig.update_layout(
-    mapbox = {
-        'style': "open-street-map", #stamen-terrain",
-        'center': {'lon': -73, 'lat': 46 },
-        'zoom': 5},
-    showlegend = False)
-
-st.plotly_chart(fig)
+# fig = go.Figure(go.Scattermapbox(
+#     fill = "toself",
+#     lon = [-74, -70, -70, -74], lat = [47, 47, 45, 45],
+#     marker = { 'size': 10, 'color': "orange" }))
+#
+# fig.update_layout(
+#     mapbox = {
+#         'style': "open-street-map", #stamen-terrain",
+#         'center': {'lon': -73, 'lat': 46 },
+#         'zoom': 5},
+#     showlegend = False)
+#
+# st.plotly_chart(fig)
 
 
 '---'
