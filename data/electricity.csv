@@ -1,4 +1,4 @@
-Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Primary Fuel ,Unit Type 
+Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Primary Fuel,Unit Type
 1,Abha,Aseer,18.245246,42.578082,1.93,Electricity,Crude,Gas Turbine
 2,Abqaiq,Ash sharqiyah,25.930097,49.687228,1.41,Electricity,Gas,Gas Turbine
 3,Al-Baha,Al-Baha,20.092916,41.439115,0.08,Electricity,Diesel,Diesel Generator
