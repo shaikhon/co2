@@ -9,7 +9,7 @@ fig = go.Figure(go.Scattermapbox(
 
 fig.update_layout(
     mapbox = {
-        'style': "stamen-terrain",
+        'style': "open-street-map", #stamen-terrain",
         'center': {'lon': -73, 'lat': 46 },
         'zoom': 5},
     showlegend = False)
