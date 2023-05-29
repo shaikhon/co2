@@ -19,7 +19,7 @@ fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
                         hover_data=["CO2 emission (Mton/yr)"],
                         size="CO2 emission (Mton/yr)",
                         color="Sector", zoom=4.2, width=800, height=600)
-fig.update_layout(mapbox_style="stamen-watercolor")
+fig.update_layout(mapbox_style="open-street-map")  #carto-positron
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 st.plotly_chart(fig)
 
