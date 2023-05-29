@@ -6,7 +6,7 @@ import glob
 
 st.set_page_config(
     page_title="Net0thon App",
-    page_icon=":deciduous_tree:",
+    page_icon=":four_leaf_clover:",
     layout="wide",
     initial_sidebar_state="collapsed",  #expanded
     menu_items={'Get help':'mailto:obai.shaikh@gmail.com',
