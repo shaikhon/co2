@@ -8,7 +8,10 @@ fnames = glob.glob('./data/*.csv')
 df_list = []
 for f in fnames:
     f
-    df_list.append(pd.read_csv(f, index_col=False))
+    df = pd.read_csv(f, index_col=False)
+    df
+    df_list.append(df)
+    '---'
 
 df = pd.concat(df_list)
 df

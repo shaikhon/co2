@@ -8,8 +8,7 @@ Facility ID,City,Province,Latitude,Longitude,CO2 emission (Mton/yr),Sector,Prima
 7,Al-Qaisumah,Ash sharqiyah,28.349054,46.04858,0.21,Electicity,Diesel,Gas Turbine
 8,Al-Quriyat,Al-Jouf,31.254091,37.42482,1.53,Electicity,Crude,Gas Turbine
 9,Al-Wajh,Tabuk,26.224892,36.487345,0.67,Electicity,Diesel,Diesel Generator
-10,Arar,"
-Al Hudud ash Shamaliyah",30.927426,41.05595,1.06,Electicity,Diesel,Gas Turbine
+10,Arar,Al Hudud ash Shamaliyah,30.927426,41.05595,1.06,Electicity,Diesel,Gas Turbine
 11,Asir,Aseer,18.245213,42.578117,1.70,Electicity,Diesel,Diesel Generator
 12,Bisha,Aseer,19.987498,42.393332,0.95,Electicity,Diesel,Gas Turbine
 13,Buraydah,Qassim,26.207435,44.011836,5.37,Electicity,Crude,Gas Turbine
