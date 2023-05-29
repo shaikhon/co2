@@ -8,11 +8,9 @@ fnames = glob.glob('./data/*.csv')
 df_list = []
 for f in fnames:
     df_list.append(pd.read_csv(f, index_col=False))
-    '---'
 
 df = pd.concat(df_list)
 df
-# df = pd.read_csv('./data/')
 
 '---'
 import plotly.express as px
