@@ -14,6 +14,12 @@ st.set_page_config(
                 'About':"The Green Guardian's team effort in Net0thon to combat climate change."}
 )
 
+
+st.title('Green Guardians :four_leaf_clover:')
+st.header('Green Guardians :four_leaf_clover:')
+
+
+
 fnames = glob.glob('./data/*.csv')
 
 df_list = []
@@ -25,7 +31,7 @@ df.drop(inplace=True, columns=['Primary Fuel','Unit Type'], errors='ignore')
 
 '---'
 
-st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
+# st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
 
 order={'Sector':['Electricity', 'Desalination','Petrochemicals','Refinery','Cement','Steel']}
 colors=['red','blue','yellow','green','cyan','purple','orange']
