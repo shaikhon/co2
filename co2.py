@@ -17,6 +17,35 @@ st.set_page_config(
                 'About':"The Green Guardian's team effort in Net0thon to combat climate change."}
 )
 
+def co2_map():
+    # Read files
+    fnames = glob.glob('./data/by_sector/*.csv')
+
+    df_list = []
+    for f in fnames:
+        df_list.append(pd.read_csv(f, index_col=False))
+
+    df = pd.concat(df_list)
+    df.drop(inplace=True, columns=['Primary Fuel', 'Unit Type'], errors='ignore')
+
+    # st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
+
+    order = {'Sector': ['Electricity', 'Desalination', 'Petrochemicals', 'Refinery', 'Cement', 'Steel']}
+    colors = ['red', 'blue', 'yellow', 'green', 'cyan', 'purple', 'orange']
+
+    fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
+                            hover_data=["Sector", "CO2 emission (Mton/yr)"],
+                            size="CO2 emission (Mton/yr)",
+                            size_max=30,
+                            category_orders=order,
+                            color="Sector",
+                            color_discrete_sequence=colors, zoom=3, width=450, height=350)
+    fig.update_layout(title_text="2020 Saudi Arabia's CO2 Emissions",
+                      mapbox_style="carto-positron")  # carto-positron
+    fig.update_layout(margin={"r": 0, "t": 30, "l": 0, "b": 0})
+
+    return fig
+
 
 def annual_prophecy(d, ys, growth='linear', forecast_period=5):
     '''
@@ -137,7 +166,7 @@ def prophet(d):
     fig.update_layout(
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
-        #         template="plotly_dark",
+        template="plotly_dark",
         margin=dict(t=10, b=10, l=10, r=10),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -180,39 +209,15 @@ def co2_ml():
 
 st.title('Green Guardians :four_leaf_clover:')
 
-
-# Read files
-fnames = glob.glob('./data/by_sector/*.csv')
-
-df_list = []
-for f in fnames:
-    df_list.append(pd.read_csv(f, index_col=False))
-
-df = pd.concat(df_list)
-df.drop(inplace=True, columns=['Primary Fuel','Unit Type'], errors='ignore')
-
 '---'
-
-# st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
-
-order={'Sector':['Electricity', 'Desalination','Petrochemicals','Refinery','Cement','Steel']}
-colors=['red','blue','yellow','green','cyan','purple','orange']
-
-fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="City",
-                        hover_data=["Sector", "CO2 emission (Mton/yr)"],
-                        size="CO2 emission (Mton/yr)",
-                        size_max=30,
-                        category_orders=order,
-                        color="Sector",
-                        color_discrete_sequence=colors, zoom=3, width=450, height=350)
-fig.update_layout( title_text = "2020 Saudi Arabia's CO2 Emissions",
-                   mapbox_style="carto-positron")  #carto-positron
-fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
-st.plotly_chart(fig)   # USE COLUMN WIDTH OF CONTAINER
+# Display KSA CO2 map
+with st.container():
+    st.plotly_chart(co2_map(), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
 # CO2 ML prediction
-st.plotly_chart(co2_ml())   # USE COLUMN WIDTH OF CONTAINER
+with st.container():
+    st.plotly_chart(co2_ml(), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 
 '---'
