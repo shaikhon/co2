@@ -38,7 +38,7 @@ def co2_map():
                             size="CO2 emission (Mton/yr)",
                             size_max=30,
                             category_orders=order,
-                            color="Sector",
+                            color="Province",
                             color_discrete_sequence=colors,
                             zoom=5,
                             # width=450,
