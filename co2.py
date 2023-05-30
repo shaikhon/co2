@@ -146,16 +146,17 @@ def prophet(d):
         yaxis2=dict(showgrid=False, title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
     )
-    return fig
+    return fig6s
 
 
 def co2_ml():
     fnames = glob.glob('./co2/data/*.csv')
-
+    fnames
     # kt of co2
     df_list = []
     for f in fnames:
         df = pd.read_csv(f).T.dropna()
+        df
         df_list.append(df)
 
     df = pd.concat(df_list, axis=1)
