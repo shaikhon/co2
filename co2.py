@@ -146,7 +146,7 @@ def prophet(d):
         yaxis2=dict(showgrid=False, title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
     )
-    return fig6s
+    return fig
 
 
 def co2_ml():
