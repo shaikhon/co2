@@ -121,16 +121,16 @@ def prophet(d):
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
                              # line=dict(color='rgba(255,255,255,1)', width=1),
                              line=dict(color=color, width=1),
-                             hovertemplate='<i>Forecast</i>: $%{y:.2f}' +
-                                           '<br><i>Time</i>: %{x|%H:%M}<br><extra></extra>',
+                             hovertemplate='<i>CO2</i>: $%{y:.2f}' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              showlegend=False),
                   secondary_y=False)
 
     # plot pop
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x / 1e6,
                              line=dict(color='magenta', width=1),
-                             hovertemplate='<i>Forecast</i>: $%{y:.2f}' +
-                                           '<br><i>Year</i>: %{x|%Y:%H:%M}<br><extra></extra>',
+                             hovertemplate='<i>Population</i>: $%{y:.2f}' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              showlegend=False),
                   secondary_y=True)
 
