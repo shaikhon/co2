@@ -121,7 +121,7 @@ def prophet(d):
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
                              # line=dict(color='rgba(255,255,255,1)', width=1),
                              line=dict(color=color, width=1),
-                             hovertemplate='<i>CO2</i>: $%{y:.2f}' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              showlegend=False),
                   secondary_y=False)
@@ -129,7 +129,7 @@ def prophet(d):
     # plot pop
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x / 1e6,
                              line=dict(color='magenta', width=1),
-                             hovertemplate='<i>Population</i>: $%{y:.2f}' +
+                             hovertemplate='<i>Population</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              showlegend=False),
                   secondary_y=True)
@@ -176,7 +176,7 @@ def prophet(d):
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
-        yaxis=dict(showgrid=False, title={"font": dict(size=24), "text": "CO2 (mt)", "standoff": 10}),
+        yaxis=dict(showgrid=False, title={"font": dict(size=24), "text": "CO2 (million ton)", "standoff": 10}),
         yaxis2=dict(showgrid=False, title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
     )
