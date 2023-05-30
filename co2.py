@@ -39,7 +39,10 @@ def co2_map():
                             size_max=30,
                             category_orders=order,
                             color="Sector",
-                            color_discrete_sequence=colors, zoom=3, width=450, height=350)
+                            color_discrete_sequence=colors,
+                            zoom=5,
+                            # width=450,
+                            height=800)
     fig.update_layout(title_text="2020 Saudi Arabia's CO2 Emissions",
                       mapbox_style="carto-positron")  # carto-positron
     fig.update_layout(margin={"r": 0, "t": 30, "l": 0, "b": 0})
@@ -206,9 +209,9 @@ def co2_ml():
 ####################################################################################
 ####################################################################################
 ####################################################################################
-
 st.title('Green Guardians :four_leaf_clover:')
-
+st.header('Net0thon 2023')
+st.subheader('KFUPM - Dhahran - Saudi Arabia')
 '---'
 # Display KSA CO2 map
 with st.container():
