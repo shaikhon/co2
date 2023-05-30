@@ -17,7 +17,7 @@ st.set_page_config(
                 'About':"The Green Guardian's team effort in Net0thon to combat climate change."}
 )
 
-def co2_map():
+def co2_map(color_by):
     # Read files
     fnames = glob.glob('./data/by_sector/*.csv')
 
@@ -38,12 +38,13 @@ def co2_map():
                             size="CO2 emission (Mton/yr)",
                             size_max=30,
                             category_orders=order,
-                            color="Province",
+                            color=color_by,
                             color_discrete_sequence=colors,
                             zoom=5,
                             # width=450,
                             height=900)
     fig.update_layout(title_text="2020 Saudi Arabia's CO2 Emissions",
+                      title_text_font_size=28,
                       mapbox_style="carto-positron")  # carto-positron
     fig.update_layout(margin={"r": 0, "t": 30, "l": 0, "b": 0})
 
@@ -215,7 +216,8 @@ st.subheader('KFUPM - Dhahran - Saudi Arabia')
 '---'
 # Display KSA CO2 map
 with st.container():
-    st.plotly_chart(co2_map(), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+    color_by = st.selectbox('color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
+    st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
 # CO2 ML prediction
