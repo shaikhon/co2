@@ -168,7 +168,8 @@ def prophet(d):
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         template="plotly_dark",
-        margin=dict(t=10, b=10, l=10, r=10),
+        margin=dict(t=30, b=10, l=10, r=10),
+
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
@@ -220,7 +221,6 @@ with st.container():
 
 
 '---'
-df
 # fig = go.Figure(go.Scattermapbox(
 #     fill = "toself",
 #     lon = [-74, -70, -70, -74], lat = [47, 47, 45, 45],
