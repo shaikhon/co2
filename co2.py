@@ -210,8 +210,8 @@ def co2_ml():
 ####################################################################################
 ####################################################################################
 st.title('Green Guardians :four_leaf_clover:')
-st.markdown('Net0thon 2023')
-st.subheader('KFUPM - Dhahran - Saudi Arabia')
+st.subheader('Net0thon 2023')
+st.markdown('KFUPM - Dhahran - Saudi Arabia')
 '---'
 # Display KSA CO2 map
 with st.container():
