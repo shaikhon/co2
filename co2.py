@@ -164,6 +164,7 @@ def prophet(d):
     #                   secondary_y=True)
 
     fig.update_layout(
+        title_text="Saudi Arabia's CO2 & Population Forecast",
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         template="plotly_dark",
@@ -180,12 +181,10 @@ def prophet(d):
 
 def co2_ml():
     fnames = glob.glob('./data/*.csv')
-    fnames
     # kt of co2
     df_list = []
     for f in fnames:
         df = pd.read_csv(f).T.dropna()
-        df
         df_list.append(df)
 
     df = pd.concat(df_list, axis=1)
