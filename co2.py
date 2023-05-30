@@ -150,7 +150,7 @@ def prophet(d):
 
 
 def co2_ml():
-    fnames = glob.glob('./co2/data/*.csv')
+    fnames = glob.glob('./data/*.csv')
     fnames
     # kt of co2
     df_list = []
