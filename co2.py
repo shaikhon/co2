@@ -124,6 +124,7 @@ def prophet(d):
                              line=dict(color=color, width=1),
                              hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='CO2',
                              showlegend=True),
                   secondary_y=False)
 
@@ -132,6 +133,7 @@ def prophet(d):
                              line=dict(color='magenta', width=1),
                              hovertemplate='<i>Population</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='Population',
                              showlegend=True),
                   secondary_y=True)
 
@@ -211,12 +213,16 @@ def co2_ml():
 ####################################################################################
 ####################################################################################
 st.title('Green Guardians :four_leaf_clover:')
-st.subheader('Net0thon 2023')
+st.markdown('Net0thon 2023')
 st.markdown('KFUPM - Dhahran - Saudi Arabia')
 '---'
 title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
 st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
+
+#TODO:
+# 1. toml config dark colors
+# 2.
 
 # Display KSA CO2 map
 with st.container():
