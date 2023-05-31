@@ -51,7 +51,7 @@ def co2_map(color_by):
     return fig
 
 
-def annual_prophecy(d, ys, growth='linear', forecast_period=5):
+def annual_prophecy(d, ys, growth='linear', forecast_period=15):
     '''
     prophecy - FORECAST FUTURE STOCK PRICE
 
@@ -102,31 +102,13 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=5):
     return d
 
 
-def prophet(d):
+def prophet_plot(d):
     color = 'lime'  # if current_price >= open else 'rgb(255, 49, 49)'
     x = d.index.to_list()
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-    # plot (CO2) Actual
-    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
-                             line=dict(color=color, width=2),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
-                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='CO2',
-                             showlegend=True),
-                  secondary_y=False)
-
-    # plot (CO2) Forecast
-    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
-                             line=dict(color=color, width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
-                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='CO2 Forecast',
-                             showlegend=True),
-                  secondary_y=False)
-
     # plot population Actual
-    fig.add_trace(go.Scatter(mode='lines', x=x, y=d['pop'] / 1e6,
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d['pop'],
                              line=dict(color='magenta', width=2),
                              hovertemplate='<i>Pop.</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
@@ -135,7 +117,7 @@ def prophet(d):
                   secondary_y=True)
 
     # plot population Forecast
-    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x / 1e6,
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x,
                              line=dict(color='magenta', width=2, dash='dash'),
                              hovertemplate='<i>Pop. Forecast</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
@@ -143,26 +125,79 @@ def prophet(d):
                              showlegend=True),
                   secondary_y=True)
 
+    # plot (CO2 emissions) Actual
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
+                             line=dict(color=color, width=2),
+                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='CO2',
+                             showlegend=True),
+                  secondary_y=False)
+
+    # plot (CO2 emissions) Forecast
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
+                             line=dict(color=color, width=2, dash='dash'),
+                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='CO2 Forecast',
+                             showlegend=True),
+                  secondary_y=False)
+
+    # plot (CO2 abatment)
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate,
+                             line=dict(color='blue', width=2),
+                             hovertemplate='<i>Pop.</i>: %{y:.2f}' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='Abatement',
+                             showlegend=True),
+                  secondary_y=False)
+
+    # plot (CO2 abatment) forecast
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate2,
+                             line=dict(color='blue', width=2, dash='dash'),
+                             hovertemplate='<i>Pop.</i>: %{y:.2f}' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='Abatement Estimate',
+                             showlegend=True),
+                  secondary_y=False)
+
+    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="green", annotation_text="2030 Goal")
 
     fig.update_layout(
         title_text="Saudi Arabia's CO2 & Population Forecast",
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
-        template="plotly_dark",
+        #         template="plotly_dark",
         margin=dict(t=30, b=10, l=10, r=10),
 
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=True,
         yaxis=dict(showgrid=False, title={"font": dict(size=24), "text": "CO2 (million ton)", "standoff": 10}),
-        yaxis2=dict(showgrid=False, title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
+        yaxis2=dict(showgrid=False, range=[0, 40e6],
+                    title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
     )
     return fig
 
 
-def co2_ml():
+def co2_ml(l3_per_yr=100, growth_rate=1.05):
     fnames = glob.glob('./co2/data/*.csv')
+    n = 15  # forecast years
+    rate = .1  # tons co2/yr per tree
+    growth_vector = np.zeros(n)
+
+    for i, item in enumerate(growth_vector):
+        if i == 0:
+            growth_vector[i] = rate
+            continue
+        growth_vector[i] = growth_vector[i - 1] * growth_rate
+
+    print(growth_vector)
+
+    l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
+
+    print(l3)
 
     # kt of co2
     df_list = []
@@ -174,17 +209,19 @@ def co2_ml():
     df.rename(columns={0: 'co2_kt', 1: 'pop',
                        2: 'utmn_eor', 3: 'sabic', 4: 'mangrove'},
               inplace=True)
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove + 10
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
     df.index = pd.to_datetime(df.index)
 
     cols = ['co2_mt', 'pop']
 
-    df = annual_prophecy(df, cols, forecast_period=15)
-
-    fig = prophet(df)
+    df = annual_prophecy(df, cols, forecast_period=n)
+    df['abate2'] = df.abate.pad()
+    df.abate2.iloc[-n:] += l3
+    df.abate2.iloc[-n:] *= growth_vector * 1 / rate
+    fig = prophet_plot(df)
 
     return fig
-
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -215,7 +252,9 @@ with st.container():
 st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>", unsafe_allow_html=True)
 # CO2 ML prediction
 with st.container():
-    st.plotly_chart(co2_ml(), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+    l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
+    growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
+    st.plotly_chart(co2_ml(l3_per_yr, 1.1), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
 # fig = go.Figure(go.Scattermapbox(
