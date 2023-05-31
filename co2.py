@@ -218,11 +218,10 @@ st.markdown('KFUPM - Dhahran - Saudi Arabia')
 '---'
 title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
-st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
+# st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
 #TODO:
-# 1. toml config dark colors
-# 2.
+# forecast in dashed lines
 
 # Display KSA CO2 map
 with st.container():
