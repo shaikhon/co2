@@ -162,15 +162,18 @@ def prophet(d):
 
 
 def co2_ml():
-    fnames = glob.glob('./data/*.csv')
+    fnames = glob.glob('./co2/data/*.csv')
+
     # kt of co2
     df_list = []
     for f in fnames:
-        df = pd.read_csv(f).T.dropna()
+        df = pd.read_csv(f).T.dropna(subset=[0])
         df_list.append(df)
 
     df = pd.concat(df_list, axis=1)
-    df.rename(columns={0: 'co2_kt', 1: 'pop'}, inplace=True)
+    df.rename(columns={0: 'co2_kt', 1: 'pop',
+                       2: 'utmn_eor', 3: 'sabic', 4: 'mangrove'},
+              inplace=True)
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
     df.index = pd.to_datetime(df.index)
 
