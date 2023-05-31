@@ -128,7 +128,7 @@ def prophet(d):
     # plot population Actual
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d['pop'] / 1e6,
                              line=dict(color='magenta', width=2),
-                             hovertemplate='<i>Population</i>: %{y:.2f}' +
+                             hovertemplate='<i>Pop.</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Population',
                              showlegend=True),
@@ -137,43 +137,12 @@ def prophet(d):
     # plot population Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x / 1e6,
                              line=dict(color='magenta', width=2, dash='dash'),
-                             hovertemplate='<i>Population</i>: %{y:.2f}' +
+                             hovertemplate='<i>Pop. Forecast</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='Population',
+                             name='Population Forecast',
                              showlegend=True),
                   secondary_y=True)
 
-    #     # plot volume bars
-    #     fig.add_trace(go.Bar(x=x, y=d["pop"]/1e6, opacity=.65,
-    #                          marker={
-    #                              "color": "magenta",  # "#0FCFFF"
-    #                          },
-    #                          hovertemplate='<i>population</i>: %{y:,}<extra></extra>'
-    #                          ), secondary_y=True)
-
-    #     # plot trend error bands
-    #     upper = d.trend_upper.to_list()
-    #     lower = d.trend_lower.to_list()
-
-    #     fig.add_trace(go.Scatter(x=x + x[::-1],
-    #                              y=upper + lower[::-1],
-    #                              fill='toself',
-    #                              fillcolor='rgba(255,255,255,.25)',
-    #                              line=dict(color='rgba(255,255,255,1)'),
-    #                              hoverinfo='skip',
-    #                              showlegend=False),
-    #                   secondary_y=True)
-
-    #     # plot price
-    #     fig.add_trace(go.Scatter(mode="lines", x=x, y=d['co2_mt'],
-    #                              line={"color": color,  # limegreen, lime, #E1FF00, #ccff00
-    #                                    "width": 2,
-    #                                    },
-    #                              hovertemplate='<i>CO2</i>: $%{y:.2f}'
-    #                                            + '<br><i>Time</i>: %{x| %H:%M}'
-    #                                            + '<br><i>Date</i>: %{x|%a, %d %b %y}<extra></extra>',
-    #                              ),
-    #                   secondary_y=True)
 
     fig.update_layout(
         title_text="Saudi Arabia's CO2 & Population Forecast",
@@ -230,6 +199,8 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 # forecast in dashed lines
 # add source paper
 # add co2 data from other paris accord countries
+# add 278 mty goal as horizontal line in chart at 2023
+
 
 # Display KSA CO2 map
 with st.container():
@@ -239,11 +210,9 @@ with st.container():
 
 '---'
 st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>", unsafe_allow_html=True)
-
 # CO2 ML prediction
 with st.container():
     st.plotly_chart(co2_ml(), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
-
 
 '---'
 # fig = go.Figure(go.Scattermapbox(
@@ -261,5 +230,4 @@ with st.container():
 # st.plotly_chart(fig)
 
 
-'---'
 
