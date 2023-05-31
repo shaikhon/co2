@@ -71,8 +71,8 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=5):
         gm_prophet = Prophet(
             growth=growth,
             changepoints=None,
-            n_changepoints=len(ds) // 4,
-            changepoint_range=.99,
+            n_changepoints=len(ds) // 2,
+            changepoint_range=1,
             yearly_seasonality=True,
             weekly_seasonality=False,
             daily_seasonality=False,
@@ -106,17 +106,6 @@ def prophet(d):
     color = 'lime'  # if current_price >= open else 'rgb(255, 49, 49)'
     x = d.index.to_list()
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    # # plot price
-    # fig.add_trace(go.Scatter(mode="lines", x=x, y=d["Close"],
-    #                          line={"color": color,  # limegreen, lime, #E1FF00, #ccff00
-    #                                "width": 2,
-    #                                },
-    #                          hovertemplate='<i>Price</i>: $%{y:.2f}'
-    #                                        + '<br><i>Time</i>: %{x| %H:%M}'
-    #                                        + '<br><i>Date</i>: %{x|%a, %d %b %y}<extra></extra>',
-    #                          ),
-    #               secondary_y=True)
 
     # plot actual (CO2)
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
