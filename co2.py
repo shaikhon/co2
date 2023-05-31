@@ -222,6 +222,7 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 
 #TODO:
 # forecast in dashed lines
+# add source paper
 
 # Display KSA CO2 map
 with st.container():
