@@ -107,7 +107,7 @@ def prophet(d):
     x = d.index.to_list()
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-    # plot actual (CO2)
+    # plot (CO2) Actual
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
                              line=dict(color=color, width=2),
                              hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
@@ -116,7 +116,7 @@ def prophet(d):
                              showlegend=True),
                   secondary_y=False)
 
-    # plot yhat (CO2)
+    # plot (CO2) Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
                              line=dict(color=color, width=2, dash='dash'),
                              hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
@@ -125,9 +125,18 @@ def prophet(d):
                              showlegend=True),
                   secondary_y=False)
 
-    # plot pop
+    # plot population Actual
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d['pop'] / 1e6,
+                             line=dict(color='magenta', width=2),
+                             hovertemplate='<i>Population</i>: %{y:.2f}' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='Population',
+                             showlegend=True),
+                  secondary_y=True)
+
+    # plot population Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x / 1e6,
-                             line=dict(color='magenta', width=1),
+                             line=dict(color='magenta', width=2, dash='dash'),
                              hovertemplate='<i>Population</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Population',
