@@ -82,7 +82,7 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=5):
             holidays_prior_scale=0,
             changepoint_prior_scale=1,  # yhat slope
             mcmc_samples=0,
-            interval_width=0.80,
+            interval_width=0.1,
             uncertainty_samples=1000,
             stan_backend=None
         )
