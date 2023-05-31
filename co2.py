@@ -223,11 +223,12 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 #TODO:
 # forecast in dashed lines
 # add source paper
+# add co2 data from other paris accord countries
 
 # Display KSA CO2 map
 with st.container():
     cols = st.columns(3)
-    color_by = cols[0].selectbox('Color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
+    color_by = cols[2].selectbox('Color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
