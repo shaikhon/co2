@@ -254,6 +254,8 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 with st.container():
     l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
     growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
+    growth /= 100 + 1
+    growth
     st.plotly_chart(co2_ml(l3_per_yr, 1.1), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
