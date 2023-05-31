@@ -241,8 +241,8 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 # add 278 mty goal as horizontal line in chart at 2023
 # fix map
 
-
-cols = st.columns(3)
+place = st.empty
+cols = place.columns(3)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
 # Display KSA CO2 map
 with st.container():
