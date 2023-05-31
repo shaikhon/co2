@@ -243,7 +243,7 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 
 cols = st.columns(3)
 with cols[0]:
-    l3_per_yr = st.slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
+    l3_per_yr = st.slider('No. of Liquid Trees:', 0., 1e9, 10000, 100)
 growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
 # Display KSA CO2 map
