@@ -129,7 +129,7 @@ def prophet(d):
 
     # plot yhat (CO2)
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
-                             line=dict(color=color, width=2),
+                             line=dict(color=color, width=2, dash='dash'),
                              hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2 Forecast',
