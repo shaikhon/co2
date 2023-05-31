@@ -40,9 +40,9 @@ def co2_map(color_by):
                             category_orders=order,
                             color=color_by,
                             color_discrete_sequence=colors,
-                            zoom=5,
+                            zoom=4,
                             # width=450,
-                            height=900)
+                            height=600)
     fig.update_layout(
         # title_text="2020 Saudi Arabia's CO2 Emissions",
         mapbox_style="carto-positron")  # carto-positron
@@ -174,7 +174,7 @@ def prophet_plot(d):
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=True,
         yaxis=dict(showgrid=False, title={"font": dict(size=24), "text": "CO2 (million ton)", "standoff": 10}),
-        yaxis2=dict(showgrid=False, range=[0, 40e6],
+        yaxis2=dict(showgrid=False, range=[0, 50e6],
                     title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
     )
