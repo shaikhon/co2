@@ -199,10 +199,10 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 # st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
 #TODO:
-# forecast in dashed lines
 # add source paper
 # add co2 data from other paris accord countries
 # add 278 mty goal as horizontal line in chart at 2023
+# fix map
 
 
 # Display KSA CO2 map
