@@ -118,13 +118,21 @@ def prophet(d):
     #                          ),
     #               secondary_y=True)
 
-    # plot yhat (CO2)
-    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
-                             # line=dict(color='rgba(255,255,255,1)', width=1),
-                             line=dict(color=color, width=1),
+    # plot actual (CO2)
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
+                             line=dict(color=color, width=2),
                              hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2',
+                             showlegend=True),
+                  secondary_y=False)
+
+    # plot yhat (CO2)
+    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
+                             line=dict(color=color, width=2),
+                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
+                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+                             name='CO2 Forecast',
                              showlegend=True),
                   secondary_y=False)
 
