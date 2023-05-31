@@ -43,8 +43,9 @@ def co2_map(color_by):
                             zoom=5,
                             # width=450,
                             height=900)
-    fig.update_layout(title_text="2020 Saudi Arabia's CO2 Emissions",
-                      mapbox_style="carto-positron")  # carto-positron
+    fig.update_layout(
+        # title_text="2020 Saudi Arabia's CO2 Emissions",
+        mapbox_style="carto-positron")  # carto-positron
     fig.update_layout(margin={"r": 0, "t": 30, "l": 0, "b": 0})
 
     return fig
@@ -213,13 +214,19 @@ st.title('Green Guardians :four_leaf_clover:')
 st.subheader('Net0thon 2023')
 st.markdown('KFUPM - Dhahran - Saudi Arabia')
 '---'
+title = "2020 Saudi Arabia's CO2 Emissions"
+st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
+
 # Display KSA CO2 map
 with st.container():
     cols = st.columns(3)
-    color_by = cols[0].selectbox('color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
+    color_by = cols[0].selectbox('Color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
+st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>", unsafe_allow_html=True)
+
 # CO2 ML prediction
 with st.container():
     st.plotly_chart(co2_ml(), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
