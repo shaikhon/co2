@@ -80,9 +80,9 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=5):
             seasonality_mode='additive',
             seasonality_prior_scale=.2,  # yhat zigzag
             holidays_prior_scale=0,
-            changepoint_prior_scale=1,  # yhat slope
+            changepoint_prior_scale=100,  # yhat slope
             mcmc_samples=0,
-            interval_width=0.1,
+            interval_width=0.8,
             uncertainty_samples=1000,
             stan_backend=None
         )
