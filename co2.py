@@ -72,7 +72,7 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=5):
             growth=growth,
             changepoints=None,
             n_changepoints=len(ds),
-            changepoint_range=.98,
+            changepoint_range=.9,
             yearly_seasonality=True,
             weekly_seasonality=False,
             daily_seasonality=False,
@@ -82,7 +82,7 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=5):
             holidays_prior_scale=0,
             changepoint_prior_scale=.9, #  .25,  # yhat slope, largefr == steeper
             mcmc_samples=0,
-            interval_width=1,
+            interval_width=.8,
             uncertainty_samples=1000,
             stan_backend=None
         )
