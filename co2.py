@@ -215,7 +215,8 @@ st.markdown('KFUPM - Dhahran - Saudi Arabia')
 '---'
 # Display KSA CO2 map
 with st.container():
-    color_by = st.selectbox('color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
+    cols = st.columns(3)
+    color_by = cols[0].selectbox('color by:', ['Sector','Province', 'Primary Fuel','Unit Type'], 0)
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
