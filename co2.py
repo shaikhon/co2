@@ -26,7 +26,7 @@ def co2_map(color_by):
         df_list.append(pd.read_csv(f, index_col=False))
 
     df = pd.concat(df_list)
-    df.drop(inplace=True, columns=['Primary Fuel', 'Unit Type'], errors='ignore')
+    # df.drop(inplace=True, columns=['Primary Fuel', 'Unit Type'], errors='ignore')
 
     # st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
 
@@ -124,7 +124,7 @@ def prophet(d):
                              line=dict(color=color, width=1),
                              hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             showlegend=False),
+                             showlegend=True),
                   secondary_y=False)
 
     # plot pop
@@ -132,7 +132,7 @@ def prophet(d):
                              line=dict(color='magenta', width=1),
                              hovertemplate='<i>Population</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             showlegend=False),
+                             showlegend=True),
                   secondary_y=True)
 
     #     # plot volume bars
@@ -176,7 +176,7 @@ def prophet(d):
 
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        showlegend=False,
+        showlegend=True,
         yaxis=dict(showgrid=False, title={"font": dict(size=24), "text": "CO2 (million ton)", "standoff": 10}),
         yaxis2=dict(showgrid=False, title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
