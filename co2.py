@@ -165,7 +165,8 @@ def prophet_plot(d):
     fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="green", annotation_text="2030 Goal")
 
     fig.update_layout(
-        title_text="Saudi Arabia's CO2 & Population Forecast",
+        # title_text="Saudi Arabia's CO2 & Population Forecast",
+        title=dict(text="Saudi Arabia's CO2 & Population Forecast", font=dict(size=32)),
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         #         template="plotly_dark",
@@ -174,9 +175,10 @@ def prophet_plot(d):
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=True,
-        yaxis=dict(showgrid=False, title={"font": dict(size=24), "text": "CO2 (million ton)", "standoff": 10}),
-        yaxis2=dict(showgrid=False, range=[0, 50e6],
-                    title={"font": dict(size=24), "text": "Population (million)", "standoff": 10}),
+        yaxis=dict(showgrid=False, tickfont = dict(size=18),
+                   title={"font": dict(size=20), "text": "CO2 (million ton)", "standoff": 10}),
+        yaxis2=dict(showgrid=False, range=[0, 50e6], tickfont = dict(size=18),
+                    title={"font": dict(size=20), "text": "Population (million)", "standoff": 10}),
         xaxis=dict(showline=False)
     )
     return fig
@@ -244,8 +246,6 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 #TODO:
 # add source paper
 # add co2 data from other paris accord countries
-# add 278 mty goal as horizontal line in chart at 2023
-# fix map
 # axis font size
 
 cols = st.columns(3)
