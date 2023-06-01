@@ -43,7 +43,7 @@ def co2_map(color_by):
                             color_discrete_sequence=colors,
                             zoom=4,
                             # width=450,
-                            height=500)
+                            height=300)
     fig.update_layout(
         # title_text="2020 Saudi Arabia's CO2 Emissions",
         mapbox_style="carto-positron")  # carto-positron
