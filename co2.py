@@ -264,7 +264,7 @@ color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel',
 # with st.container():
 #     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
-tab = st.tabs(["CO2 Emissions Map - 2020"])
+tab = st.tabs(["CO2 Emissions Map - 2020", ''])
 with tab:
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
