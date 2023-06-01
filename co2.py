@@ -217,7 +217,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     df.rename(columns={0: 'co2_kt', 1: 'pop',
                        2: 'utmn_eor', 3: 'sabic', 4: 'mangrove'},
               inplace=True)
-    df['abate'] = df.utmn_eor + df.sabic + df.mangrove + 10
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove + 25
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
     df.index = pd.to_datetime(df.index)
 
