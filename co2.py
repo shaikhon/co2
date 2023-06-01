@@ -272,7 +272,7 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
 # growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
 
-cols2 = st.columns(2)
+cols2 = st.columns(3)
 
 # CO2 ML prediction
 with st.container():
@@ -281,9 +281,9 @@ with st.container():
 
     fig, total_co2, to_target = co2_ml(l3_per_yr, growth)
 
-    cols2[0].metric('Total CO2 Absorbed', f"{total_co2} MMT")
+    cols2[1].metric('Total CO2 Absorbed', f"{total_co2} MMT")
 
-    cols2[1].metric('Percent from 2030 Target', f"{to_target} %")
+    cols2[2].metric('Percent from 2030 Target', f"{to_target} %")
 
     '---'
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
