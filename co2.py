@@ -185,7 +185,7 @@ def prophet_plot(d):
 def co2_ml(l3_per_yr=100, growth_rate=1.05):
     fnames = glob.glob('./data/*.csv')
     n = 15  # forecast years
-    rate = .1  # tons co2/yr per tree
+    rate = .15  # tons co2/yr per tree
     growth_vector = np.zeros(n)
 
     for i, item in enumerate(growth_vector):
@@ -195,6 +195,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
         growth_vector[i] = growth_vector[i - 1] * growth_rate
 
     l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
+
     # kt of co2
     df_list = []
     for f in fnames:
@@ -213,8 +214,12 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
 
     df = annual_prophecy(df, cols, forecast_period=n)
     df['abate2'] = df.abate.pad()
-    df.abate2.iloc[-n:] += l3
-    df.abate2.iloc[-n:] *= growth_vector / rate
+    # df.abate2.iloc[-n:] += l3
+    # df.abate2.iloc[-n:] *= growth_vector / rate
+    df.abate2.iloc[-n:] += l3*(100*growth_vector+growth_rate)
+
+
+
     fig = prophet_plot(df)
     return fig
 ####################################################################################
