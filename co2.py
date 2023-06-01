@@ -216,7 +216,6 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     df.abate2.iloc[-n:] += l3
     df.abate2.iloc[-n:] *= growth_vector / rate
     fig = prophet_plot(df)
-    df
     return fig
 ####################################################################################
 ####################################################################################
@@ -240,8 +239,7 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 cols = st.columns(3)
 
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
-options = np.arange(0, 1000000+1, 100)
-options
+options = np.arange(0, 1000000+1, 1000)
 
 l3_per_yr = cols[0].select_slider('No. of Liquid Trees:', options, 10000)
 l3_per_yr = int(l3_per_yr)
