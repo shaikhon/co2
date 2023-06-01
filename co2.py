@@ -237,7 +237,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
 
     fig = prophet_plot(df)
 
-    return fig, round(total_co2,2), round(to_target)
+    return fig, round(total_co2), round(to_target)
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -257,9 +257,9 @@ st.markdown('Dhahran - Saudi Arabia')
 cols = st.columns(3)
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
 options = np.arange(0, 1000000+1, 10000)
-l3_per_yr = cols[0].select_slider('No. of Liquid Trees (per year):', options, 10000)
+l3_per_yr = cols[0].select_slider('No. of Liquid Trees (per year):', options, 100000)
 l3_per_yr = int(l3_per_yr)
-growth = cols[1].number_input('Growth Rate (%):', 5, 500, 10, 5)
+growth = cols[1].number_input('Growth Rate (%):', 5, 500, 20, 5)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
 
 
