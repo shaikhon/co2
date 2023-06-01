@@ -18,6 +18,14 @@ st.set_page_config(
                 'About':"The Green Guardian's team effort in Net0thon to combat climate change."}
 )
 
+def millify(n):
+    millnames = ['', ' Thousand', ' Million', ' Billion', ' Trillion']
+    n = float(n)
+    millidx = max(0, min(len(millnames) - 1,
+                         int(math.floor(0 if n == 0 else math.log10(abs(n)) / 3))))
+
+    return '{:.0f}{}'.format(n / 10 ** (3 * millidx), millnames[millidx])
+
 def co2_map(color_by):
     # Read files
     fnames = glob.glob('./data/by_sector/*.csv')
@@ -281,6 +289,7 @@ with st.container():
 
     fig, total_co2, to_target = co2_ml(l3_per_yr, growth)
 
+    cols2[0].metric('Units Installed Annually', f"{millify(l3_per_yr)}")
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2} MMT")
 
     cols2[2].metric('Percent from 2030 Target', f"{to_target} %")
