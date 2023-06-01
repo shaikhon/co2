@@ -197,9 +197,9 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     fnames = glob.glob('./data/*.csv')
     n = 15  # forecast years
     rate = .15  # tons co2/yr per tree
-    growth_vector = np.zeros(n)
 
     growth_vector = np.arange(n) * rate
+    # growth_vector = np.zeros(n)
     # for i, item in enumerate(growth_vector):
     #     if i == 0:
     #         growth_vector[i] = rate
@@ -229,7 +229,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     # df.abate2.iloc[-n:] += l3
     # df.abate2.iloc[-n:] *= growth_vector / rate
 
-    impact = l3*(100*growth_vector+growth_rate)
+    impact = l3*(100*growth_vector) #+growth_rate)
     df.abate2.iloc[-n:] += impact
 
     total_co2 = sum(impact)
