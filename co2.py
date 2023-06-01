@@ -260,7 +260,6 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 with st.container():
     growth /= 100
     growth += 1
-    growth
     st.plotly_chart(co2_ml(l3_per_yr, growth), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
