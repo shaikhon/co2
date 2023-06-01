@@ -179,7 +179,7 @@ def prophet_plot(d):
                    title={"font": dict(size=20), "text": "CO2 (million ton)", "standoff": 10}),
         yaxis2=dict(showgrid=False, range=[0, 50e6], tickfont = dict(size=18),
                     title={"font": dict(size=20), "text": "Population (million)", "standoff": 10}),
-        xaxis=dict(showline=False)
+        xaxis=dict(showline=False, tickfont = dict(size=18),)
     )
     return fig
 
