@@ -233,7 +233,6 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
 
     total_co2 = sum(impact)
 
-
     to_target = (df.abate2.iloc[-1]/278)*100
 
     fig = prophet_plot(df)
@@ -248,35 +247,22 @@ st.title('Green Guardians :four_leaf_clover:')
 st.markdown('Net0thon 2023')
 st.markdown('Dhahran - Saudi Arabia')
 '---'
-title = "2020 Saudi Arabia's CO2 Emissions"
-st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
-# st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
 #TODO:
 # add source paper
 # add co2 data from other paris accord countries
 # axis font size
 
+# CONTROL PANEL
 cols = st.columns(3)
-
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
 options = np.arange(0, 1000000+1, 10000)
-
 l3_per_yr = cols[0].select_slider('No. of Liquid Trees (per year):', options, 10000)
 l3_per_yr = int(l3_per_yr)
-
 growth = cols[1].number_input('Growth Rate (%):', 5, 500, 10, 5)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
-# Display KSA CO2 map
-# with st.container():
-#     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 
-with st.expander("CO2 Emissions Map - 2020"):
-    st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
-    st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
-
-'---'
 st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>", unsafe_allow_html=True)
 
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
@@ -299,7 +285,20 @@ with st.container():
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
     st.markdown("source: [World Bank](https://data.worldbank.org/)")
 
+# Display KSA CO2 map
+# with st.container():
+#     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+
+title = "2020 Saudi Arabia's CO2 Emissions"
+st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
+# st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
+
+with st.expander("CO2 Emissions Map - 2020"):
+    st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+    st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
+
 '---'
+
 # fig = go.Figure(go.Scattermapbox(
 #     fill = "toself",
 #     lon = [-74, -70, -70, -74], lat = [47, 47, 45, 45],
