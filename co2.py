@@ -138,7 +138,7 @@ def prophet_plot(d):
     # plot (CO2 emissions) Actual
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
                              line=dict(color=color, width=2),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2',
                              showlegend=True),
@@ -147,7 +147,7 @@ def prophet_plot(d):
     # plot (CO2 emissions) Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
                              line=dict(color=color, width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} million ton' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2 Forecast',
                              showlegend=True),
@@ -156,7 +156,7 @@ def prophet_plot(d):
     # plot (CO2 abatment)
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate,
                              line=dict(color='blue', width=2),
-                             hovertemplate='<i>Pop.</i>: %{y:.2f}' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Abatement',
                              showlegend=True),
@@ -165,7 +165,7 @@ def prophet_plot(d):
     # plot (CO2 abatment) forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate2,
                              line=dict(color='blue', width=2, dash='dash'),
-                             hovertemplate='<i>Pop.</i>: %{y:.2f}' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Abatement Estimate',
                              showlegend=True),
