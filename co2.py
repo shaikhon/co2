@@ -184,6 +184,8 @@ def prophet_plot(d):
 
 def co2_ml(l3_per_yr=100, growth_rate=1.05):
     fnames = glob.glob('./co2/data/*.csv')
+    fnames
+    
     n = 15  # forecast years
     rate = .1  # tons co2/yr per tree
     growth_vector = np.zeros(n)
