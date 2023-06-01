@@ -7,7 +7,6 @@ from prophet import Prophet
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import plotly.express as px
-from millify import millify
 
 st.set_page_config(
     page_title="Net0thon App",
