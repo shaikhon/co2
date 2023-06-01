@@ -185,7 +185,7 @@ def prophet_plot(d):
 def co2_ml(l3_per_yr=100, growth_rate=1.05):
     fnames = glob.glob('./co2/data/*.csv')
     fnames
-    
+
     n = 15  # forecast years
     rate = .1  # tons co2/yr per tree
     growth_vector = np.zeros(n)
@@ -262,6 +262,8 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 with st.container():
     growth /= 100
     growth += 1
+    growth
+    l3_per_yr
     st.plotly_chart(co2_ml(l3_per_yr, growth), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
