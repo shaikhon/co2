@@ -223,12 +223,13 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     total_co2 = sum(impact)
 
     impact[-1]
+    df.abate2.iloc[-1]
 
-    to_target = (impact[-1]/278)*100
+    to_target = (df.abate2.iloc[-1]/278)*100
 
     fig = prophet_plot(df)
 
-    return fig, round(total_co2,2), to_target
+    return fig, round(total_co2,2), round(to_target)
 ####################################################################################
 ####################################################################################
 ####################################################################################
