@@ -248,6 +248,7 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 # add co2 data from other paris accord countries
 # add 278 mty goal as horizontal line in chart at 2023
 # fix map
+# axis font size
 
 cols = st.columns(3)
 
@@ -280,7 +281,7 @@ with st.container():
 
     cols2[0].metric('Total CO2 Absorbed', f"{total_co2} MMT")
 
-    cols2[1].metric('Percent to 2030 Target', f"{to_target} %")
+    cols2[1].metric('Percent from 2030 Target', f"{to_target} %")
 
     '---'
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
