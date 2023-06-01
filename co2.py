@@ -246,7 +246,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
 ####################################################################################
 st.title('Green Guardians :four_leaf_clover:')
 st.markdown('Net0thon 2023')
-st.markdown('KFUPM - Dhahran - Saudi Arabia')
+st.markdown('Dhahran - Saudi Arabia')
 '---'
 title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
