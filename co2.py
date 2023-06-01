@@ -216,13 +216,19 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     df['abate2'] = df.abate.pad()
     # df.abate2.iloc[-n:] += l3
     # df.abate2.iloc[-n:] *= growth_vector / rate
-    df.abate2.iloc[-n:] += l3*(100*growth_vector+growth_rate)
 
-    total_co2 = sum(l3*(100*growth_vector+growth_rate))
+    impact = l3*(100*growth_vector+growth_rate)
+    df.abate2.iloc[-n:] += impact
+
+    total_co2 = sum(impact)
+
+    impact[-1]
+
+    to_target = (impact[-1]/278)*100
 
     fig = prophet_plot(df)
 
-    return fig, round(total_co2,2)
+    return fig, round(total_co2,2), to_target
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -269,8 +275,11 @@ with st.container():
     growth /= 100
     growth += 1
 
-    fig, total_co2 = co2_ml(l3_per_yr, growth)
-    cols2[0].metric('Total CO2 Absorbed ', f"{total_co2} MMT")
+    fig, total_co2, to_target = co2_ml(l3_per_yr, growth)
+
+    cols2[0].metric('Total CO2 Absorbed', f"{total_co2} MMT")
+
+    cols2[1].metric('Percent to 2030 Target', f"{to_target} %")
 
     '---'
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
