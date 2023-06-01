@@ -238,8 +238,14 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 # fix map
 
 cols = st.columns(3)
-with cols[0]:
-    l3_per_yr = st.slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
+
+# l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
+options = np.arange(0, 1000000, 100)
+options
+
+l3_per_yr = cols[0].select_slider('No. of Liquid Trees:', options, 10000)
+l3_per_yr = int(l3_per_yr)
+
 growth = cols[1].number_input('Growth Rate (%):', 5, 500, 10, 5)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
 # Display KSA CO2 map
