@@ -199,11 +199,12 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     rate = .15  # tons co2/yr per tree
     growth_vector = np.zeros(n)
 
-    for i, item in enumerate(growth_vector):
-        if i == 0:
-            growth_vector[i] = rate
-            continue
-        growth_vector[i] = growth_vector[i - 1] * growth_rate
+    growth_vector = np.arange(n) * rate
+    # for i, item in enumerate(growth_vector):
+    #     if i == 0:
+    #         growth_vector[i] = rate
+    #         continue
+    #     growth_vector[i] = growth_vector[i - 1] * growth_rate
 
     l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
 
