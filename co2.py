@@ -27,7 +27,6 @@ def co2_map(color_by):
         df_list.append(pd.read_csv(f, index_col=False))
 
     df = pd.concat(df_list)
-    df
     # df.drop(inplace=True, columns=['Primary Fuel', 'Unit Type'], errors='ignore')
 
     # st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
@@ -262,7 +261,11 @@ l3_per_yr = int(l3_per_yr)
 growth = cols[1].number_input('Growth Rate (%):', 5, 500, 10, 5)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
 # Display KSA CO2 map
-with st.container():
+# with st.container():
+#     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+
+tab = st.tabs(["CO2 Emissions Map - 2020 "])
+with tab:
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
