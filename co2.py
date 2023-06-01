@@ -197,8 +197,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     print(growth_vector)
 
     l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
-
-    print(l3)
+    l3
 
     # kt of co2
     df_list = []
@@ -219,7 +218,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     df = annual_prophecy(df, cols, forecast_period=n)
     df['abate2'] = df.abate.pad()
     df.abate2.iloc[-n:] += l3
-    df.abate2.iloc[-n:] *= growth_vector * 1 / rate
+    df.abate2.iloc[-n:] *= growth_vector / rate
     fig = prophet_plot(df)
 
     return fig
@@ -245,7 +244,7 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 cols = st.columns(3)
 with cols[0]:
     l3_per_yr = st.slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
-growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
+growth = cols[1].number_input('Growth Rate (%):', 5, 500, 10, 5)
 color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
 # Display KSA CO2 map
 with st.container():
@@ -259,9 +258,10 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 
 # CO2 ML prediction
 with st.container():
-    growth /= 100 + 1
+    growth /= 100
+    growth += 1
     growth
-    st.plotly_chart(co2_ml(l3_per_yr, 1.1), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+    st.plotly_chart(co2_ml(l3_per_yr, growth), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
 # fig = go.Figure(go.Scattermapbox(
