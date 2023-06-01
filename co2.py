@@ -19,7 +19,8 @@ st.set_page_config(
 )
 
 def millify(n):
-    millnames = ['', ' Thousand', ' Million', ' Billion', ' Trillion']
+    # millnames = ['', ' Thousand', ' Million', ' Billion', ' Trillion']
+    millnames = ['', ' K', ' M', ' B', ' T']
     n = float(n)
     millidx = max(0, min(len(millnames) - 1,
                          int(math.floor(0 if n == 0 else math.log10(abs(n)) / 3))))
@@ -291,7 +292,7 @@ with st.container():
     l3_per_yr
 
     cols2[0].metric('Units Installed Annually', f"{millify(l3_per_yr)}")
-    cols2[1].metric('Total CO2 Absorbed', f"{total_co2} MMT")
+    cols2[1].metric('Total CO2 Absorbed', f"{total_co2} MT")
 
     cols2[2].metric('Percent from 2030 Target', f"{to_target} %")
 
