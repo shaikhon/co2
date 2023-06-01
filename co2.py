@@ -270,7 +270,7 @@ with st.container():
     growth += 1
 
     fig, total_co2 = co2_ml(l3_per_yr, growth)
-    cols2[0].metric('Total CO2 Absorbed', total_co2)
+    cols2[0].metric('Total CO2 Absorbed ', f"{total_co2} Million Tons")
 
     '---'
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
