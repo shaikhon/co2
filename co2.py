@@ -222,7 +222,7 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
 
     fig = prophet_plot(df)
 
-    return fig, total_co2
+    return fig, round(total_co2)
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -271,6 +271,8 @@ with st.container():
 
     fig, total_co2 = co2_ml(l3_per_yr, growth)
     cols2[0].metric('Total CO2 Absorbed', total_co2)
+
+    '---'
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
