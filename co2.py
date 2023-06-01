@@ -263,7 +263,6 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 # growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
 
 cols2 = st.columns(3)
-cols2[0].metric('Total CO2 Absorbed', )
 
 # CO2 ML prediction
 with st.container():
