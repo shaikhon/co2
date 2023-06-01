@@ -274,7 +274,7 @@ color_by = cols[2].selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel',
 
 with st.expander("CO2 Emissions Map - 2020"):
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
-    st.markdown("source:[Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
+    st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
 
 '---'
 st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>", unsafe_allow_html=True)
@@ -297,6 +297,7 @@ with st.container():
 
     '---'
     st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+    st.markdown("source: [World Bank](https://data.worldbank.org/)")
 
 '---'
 # fig = go.Figure(go.Scattermapbox(
