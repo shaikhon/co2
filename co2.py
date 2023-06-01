@@ -222,8 +222,6 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
 
     total_co2 = sum(impact)
 
-    impact[-1]
-    df.abate2.iloc[-1]
 
     to_target = (df.abate2.iloc[-1]/278)*100
 
@@ -274,7 +272,7 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
 # growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
 
-cols2 = st.columns(3)
+cols2 = st.columns(2)
 
 # CO2 ML prediction
 with st.container():
