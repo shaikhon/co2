@@ -72,7 +72,7 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=15):
         gm_prophet = Prophet(
             growth=growth,
             changepoints=None,
-            n_changepoints=len(ds),
+            n_changepoints=len(ds)//2,
             changepoint_range=.92,
             yearly_seasonality=True,
             weekly_seasonality=False,
