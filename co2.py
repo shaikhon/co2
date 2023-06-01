@@ -27,6 +27,7 @@ def co2_map(color_by):
         df_list.append(pd.read_csv(f, index_col=False))
 
     df = pd.concat(df_list)
+    df
     # df.drop(inplace=True, columns=['Primary Fuel', 'Unit Type'], errors='ignore')
 
     # st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
