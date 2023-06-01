@@ -183,7 +183,7 @@ def prophet_plot(d):
 
 
 def co2_ml(l3_per_yr=100, growth_rate=1.05):
-    fnames = glob.glob('./co2/data/*.csv')
+    fnames = glob.glob('./data/*.csv')
     fnames
 
     n = 15  # forecast years
