@@ -1,5 +1,6 @@
 numpy
 pandas
+millify
 plotly
 streamlit
 prophet

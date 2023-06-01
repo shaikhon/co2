@@ -7,6 +7,7 @@ from prophet import Prophet
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import plotly.express as px
+from millify import millify
 
 st.set_page_config(
     page_title="Net0thon App",
@@ -218,10 +219,11 @@ def co2_ml(l3_per_yr=100, growth_rate=1.05):
     # df.abate2.iloc[-n:] *= growth_vector / rate
     df.abate2.iloc[-n:] += l3*(100*growth_vector+growth_rate)
 
-
+    total_co2 = sum(l3*(100*growth_vector+growth_rate))
 
     fig = prophet_plot(df)
-    return fig
+
+    return fig, total_co2
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -246,7 +248,7 @@ cols = st.columns(3)
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
 options = np.arange(0, 1000000+1, 10000)
 
-l3_per_yr = cols[0].select_slider('No. of Liquid Trees:', options, 10000)
+l3_per_yr = cols[0].select_slider('No. of Liquid Trees (per year):', options, 10000)
 l3_per_yr = int(l3_per_yr)
 
 growth = cols[1].number_input('Growth Rate (%):', 5, 500, 10, 5)
@@ -261,13 +263,17 @@ st.markdown("<h1 style='text-align: center; color: white;'>Smart Dashboard</h1>"
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1e9, 10000, 100)
 # growth = cols[1].number_input('Growth Rate (%):', 5, 500, 5, 5)
 
+cols2 = st.columns(3)
+cols2[0].metric('Total CO2 Absorbed', )
+
 # CO2 ML prediction
 with st.container():
     growth /= 100
     growth += 1
-    growth
-    l3_per_yr
-    st.plotly_chart(co2_ml(l3_per_yr, growth), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+
+    fig, total_co2 = co2_ml(l3_per_yr, growth)
+    cols2[0].metric('Total CO2 Absorbed', total_co2)
+    st.plotly_chart(fig, use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
 
 '---'
 # fig = go.Figure(go.Scattermapbox(
