@@ -72,14 +72,14 @@ def annual_prophecy(d, ys, growth='linear', forecast_period=15):
         gm_prophet = Prophet(
             growth=growth,
             changepoints=None,
-            n_changepoints=len(ds)//2,
+            n_changepoints=len(ds)//4,
             changepoint_range=.92,
             yearly_seasonality=True,
             weekly_seasonality=False,
             daily_seasonality=False,
             holidays=None,
             seasonality_mode='additive',
-            seasonality_prior_scale= 1, #0.05,  # yhat zigzag
+            seasonality_prior_scale= 10, #0.05,  # yhat zigzag
             holidays_prior_scale=0,
             changepoint_prior_scale=.25, #  .25,  # yhat slope, largefr == steeper
             mcmc_samples=0,
