@@ -240,7 +240,7 @@ st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsaf
 cols = st.columns(3)
 
 # l3_per_yr = cols[0].slider('No. of Liquid Trees:', 0, 1000000, 10000, 100)
-options = np.arange(0, 1000000, 100)
+options = np.arange(0, 1000000+1, 100)
 options
 
 l3_per_yr = cols[0].select_slider('No. of Liquid Trees:', options, 10000)
