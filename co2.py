@@ -346,7 +346,7 @@ with st.container():
 ################################## CO2 MAP
 '---'
 title = "2020 Saudi Arabia's CO2 Emissions"
-st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 # st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
 with st.expander("CO2 Emissions Map - 2020", True):
