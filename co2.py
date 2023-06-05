@@ -204,7 +204,7 @@ def prophet_plot(d):
     return fig
 
 
-def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
+def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_y, l3_rate_mty):
 
     fnames = glob.glob('./data/*.csv')
     n = 15  # future forecast years
@@ -237,6 +237,9 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     co2_wells_impact = total_co2_wells * co2_rate
 
     # geothermal wells
+    total_geo_wells = annual_impact * n_geo_wells
+    geo_wells_impact = total_geo_wells * co2_saved_yr
+    power_generated_y = total_geo_wells * power_rate_y
 
     # Liquid 3
     total_l3 = annual_impact * n_l3_y
@@ -244,10 +247,10 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
 
     # Combined future impact
     df['abate2'] = df.abate.pad()
-    df.abate2.iloc[-n:] += l3_impact + co2_wells_impact
+    df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
 
     # metrics
-    total_co2 = sum(l3_impact + co2_wells_impact)
+    total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact)
 
 
     dt = pd.to_datetime(['2030','2031'])
@@ -272,7 +275,8 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
 
 
 
-    return fig, total_l3[-1], total_co2_wells[-1], round(total_co2), round(to_target), year_end
+    return fig, total_co2_wells[-1], total_geo_wells[-1], total_l3[-1],round(total_co2), \
+           power_generated_y[-1], round(to_target), year_end
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -326,8 +330,9 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 with st.container():
 
     # CO2 ML prediction
-    fig, total_l3_installed, total_co2_wells_drilled, total_co2, to_target, year_end = co2_ml(
-        n_co2_wells, co2_rate, n_l3, l3_rate_mty)
+    fig, total_co2_wells_drilled, total_geo_wells_drilled, total_l3_installed, total_co2, power_generated,\
+    to_target, year_end = co2_ml(
+        n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr,  n_l3, l3_rate_mty)
 
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
@@ -337,9 +342,14 @@ with st.container():
     cols2 = st.columns([1, 5, 5, 5, 1], gap='small')  ########## METRICS COLUMNS
 
     # METRICS
-    cols2[1].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
-    cols2[2].metric('Total CO2 Wells Drilled', f"{millify(total_co2_wells_drilled)}")
-    cols2[2].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
+    cols2[1].metric('Total CO2 Wells Drilled', f"{millify(total_co2_wells_drilled)}")
+    cols2[2].metric('Total Geothermal Wells Drilled', f"{millify(total_geo_wells_drilled)}")
+    cols2[3].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
+
+    cols2[1].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
+    cols2[2].metric('Total Power Generated', f"{power_generated} KWh")
+    # total energy generated
+    
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
