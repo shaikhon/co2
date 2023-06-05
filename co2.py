@@ -265,8 +265,9 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     total_co2
 
     'df.index[-1]'
-    df.index[-1].strftime('%Y')
-
+    year_end = df.index[-1].strftime('%Y')
+    year_end
+    
     title = "Saudi Arabia's CO2 & Population Forecast"
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
                 unsafe_allow_html=True)
