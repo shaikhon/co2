@@ -267,12 +267,12 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     'df.index[-1]'
     year_end = df.index[-1].strftime('%Y')
     year_end
-    
+
     title = "Saudi Arabia's CO2 & Population Forecast"
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
                 unsafe_allow_html=True)
 
-    return fig, total_l3[-1], total_co2_wells[-1], round(total_co2), round(to_target)
+    return fig, total_l3[-1], total_co2_wells[-1], round(total_co2), round(to_target), year_end
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -323,14 +323,17 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 
 ################################## Smart DASHBOARD
 '---'
-st.markdown("<h1 style='text-align: center; color: white; font-size: medium'>SUSTAINABILITY DASHBOARD</h1>", unsafe_allow_html=True)
 
 cols2 = st.columns([1,5,5,5,1], gap='small')   ########## METRICS COLUMNS
 with st.container():
 
     # CO2 ML prediction
-    fig, total_l3_installed, total_co2_wells_drilled, total_co2, to_target = co2_ml(
+    fig, total_l3_installed, total_co2_wells_drilled, total_co2, to_target, year_end = co2_ml(
         n_co2_wells, co2_rate, n_l3, l3_rate_mty)
+
+    # TITLE
+    st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
+                unsafe_allow_html=True)
 
     # METRICS
     cols2[1].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
