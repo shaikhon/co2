@@ -50,7 +50,7 @@ def co2_map(color_by):
                             category_orders=order,
                             color=color_by,
                             color_discrete_sequence=colors,
-                            zoom=3.5,
+                            zoom=3,
                             # width=450,
                             height=500)
     fig.update_layout(
