@@ -173,7 +173,7 @@ def prophet_plot(d):
 
     fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 Goal")
 
-    fig.add_hline(y=d.abate2.iloc[-1], line_width=3, line_dash="dash", line_color="green", annotation_text="Net-zero Goal")
+    fig.add_hline(y=d.yhat_y.iloc[-1], line_width=3, line_dash="dash", line_color="green", annotation_text="Net-zero Goal")
 
 
     fig.update_layout(
