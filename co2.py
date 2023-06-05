@@ -262,8 +262,8 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     co2_wells_impact
 
     'SUM co2_wells_impact'
-    sum(co2_wells_impact)
-
+    S = sum(co2_wells_impact)
+    S
     'SUM total co2 (all methods):'
     total_co2
 
