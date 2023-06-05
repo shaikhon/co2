@@ -238,7 +238,12 @@ def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     total_co2
 
     to_target = (df.abate2.iloc[-1]/278)*100
+
     df.abate2.iloc[-1]
+    df.abate2.iloc[-5]
+    df.abate2.loc[2030]
+
+
     fig = prophet_plot(df)
 
     return fig, round(total_co2,2), round(to_target)
