@@ -233,7 +233,8 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     annual_impact = np.arange(n) + 1.0
 
     # co2 wells
-    co2_wells_impact = annual_impact * n_co2_wells * co2_rate
+    total_co2_wells = annual_impact * n_co2_wells
+    co2_wells_impact = total_co2_wells * co2_rate
 
     # geothermal wells
 
@@ -263,11 +264,14 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     'cum sum total co2 (all methods):'
     total_co2
 
+    'df.index[-1]'
+    df.index[-1]
+
     title = "Saudi Arabia's CO2 & Population Forecast"
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
                 unsafe_allow_html=True)
 
-    return fig, total_l3[-1], round(total_co2), round(to_target)
+    return fig, total_l3[-1], total_co2_wells[-1], round(total_co2), round(to_target)
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -324,10 +328,12 @@ cols2 = st.columns([1,5,5,5,1], gap='small')   ########## METRICS COLUMNS
 with st.container():
 
     # CO2 ML prediction
-    fig, total_l3_installed, total_co2, to_target = co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty)
+    fig, total_l3_installed, total_co2_wells_drilled, total_co2, to_target = co2_ml(
+        n_co2_wells, co2_rate, n_l3, l3_rate_mty)
 
     # METRICS
     cols2[1].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
+    cols2[2].metric('Total CO2 Wells Drilled', f"{millify(total_co2_wells_drilled)}")
     cols2[2].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
