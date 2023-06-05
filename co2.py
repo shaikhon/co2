@@ -193,7 +193,7 @@ def prophet_plot(d):
     return fig
 
 
-def co2_ml(n_l3, l3_rate_mty):
+def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     fnames = glob.glob('./data/*.csv')
     n = 15  # forecast years
 
@@ -202,6 +202,9 @@ def co2_ml(n_l3, l3_rate_mty):
     # l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
 
     annual_impact = np.arange(n) + 1.0
+
+    # co2 wells
+    co2_wells_impact = annual_impact * n_co2_wells * co2_rate
 
     # Liquid 3
     l3_impact = annual_impact * n_l3 * l3_rate_mty
@@ -227,13 +230,13 @@ def co2_ml(n_l3, l3_rate_mty):
 
     # Combined future impact
     df['abate2'] = df.abate.pad()
-    df.abate2.iloc[-n:] += l3_impact
+    df.abate2.iloc[-n:] += l3_impact + co2_wells_impact
 
-    l3_impact
 
     # metrics
-    total_co2 = sum(l3_impact)
+    total_co2 = sum(l3_impact + co2_wells_impact)
     total_co2
+
     to_target = (df.abate2.iloc[-1]/278)*100
     df.abate2.iloc[-1]
     fig = prophet_plot(df)
@@ -282,7 +285,6 @@ co2_saved_yr = power_rate_y * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
 n_l3 = cols[0].number_input('No. of Liquid Trees:', 0, None, 100, 100,help="Number of liquid trees installed annually")
 l3_rate_kgy = cols[1].slider('CO2 absorption rate (Kg/yr):',min_value=10,max_value=1000,value=100,step=10,
                         help="Average CO2 absorption (abatement) rate per tree in kilograms per year")
-
 l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 
 # typical emission rate is within 0.37–0.48 kg CO2 per kWh
@@ -303,7 +305,7 @@ cols2 = st.columns(5)   ########## METRICS COLUMNS
 with st.container():
 
     # CO2 ML prediction
-    fig, total_co2, to_target = co2_ml(n_l3, l3_rate_mty)
+    fig, total_co2, to_target = co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty)
 
     # METRICS
     cols2[1].metric('Units Installed Annually', f"{millify(n_l3)}")
