@@ -324,7 +324,6 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 ################################## Smart DASHBOARD
 '---'
 
-cols2 = st.columns([1,5,5,5,1], gap='small')   ########## METRICS COLUMNS
 with st.container():
 
     # CO2 ML prediction
@@ -334,6 +333,9 @@ with st.container():
     # TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
                 unsafe_allow_html=True)
+
+    # METRIC COLUMNS
+    cols2 = st.columns([1, 5, 5, 5, 1], gap='small')  ########## METRICS COLUMNS
 
     # METRICS
     cols2[1].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
