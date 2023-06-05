@@ -239,7 +239,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # geothermal wells
     total_geo_wells = annual_impact * n_geo_wells
     geo_wells_impact = total_geo_wells * co2_saved_yr
-    power_generated_y = total_geo_wells * power_rate_y
+    power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
 
     # Liquid 3
     total_l3 = annual_impact * n_l3_y
@@ -274,9 +274,8 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     year_end = df.index[-1].strftime('%Y')
 
 
-
     return fig, total_co2_wells[-1], total_geo_wells[-1], total_l3[-1],round(total_co2), \
-           power_generated_y[-1], round(to_target), year_end
+           round(power_generated_y[-1]), round(to_target), year_end
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -347,9 +346,9 @@ with st.container():
     cols2[3].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
 
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
-    cols2[2].metric('Total Power Generated', f"{power_generated} KWh")
+    cols2[2].metric('Total Power Generated', f"{power_generated} TWh")
     # total energy generated
-    
+
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
