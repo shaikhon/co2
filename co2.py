@@ -279,7 +279,7 @@ co2_saved_yr
 # growth = cols[1].number_input('Growth Rate (%):', 5, 500, 20, 5)
 
 n_l3 = cols[0].number_input('No. of Liquid Trees:', 0, None, 100, 100,help="Number of liquid trees installed annually")
-l3_rate_kgy = cols[1].slider('CO2 absorption rate (Kg/yr):',min_value=10,max_value=None,value=100,step=10,
+l3_rate_kgy = cols[1].slider('CO2 absorption rate (Kg/yr):',min_value=10,max_value=1000,value=100,step=10,
                         help="Average CO2 absorption (abatement) rate per tree in kilograms per year")
 
 l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
