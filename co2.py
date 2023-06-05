@@ -261,11 +261,11 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     fig = prophet_plot(df)
 
-    'co2_wells_impact'
-    co2_wells_impact
+    'geo_wells_impact'
+    geo_wells_impact
 
-    'SUM co2_wells_impact'
-    S = sum(co2_wells_impact)
+    'SUM geo_wells_impact'
+    S = sum(geo_wells_impact)
     S
     'SUM total co2 (all methods):'
     total_co2
