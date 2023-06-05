@@ -247,9 +247,10 @@ def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     'abate2 iloc[-5]'
     df.abate2.iloc[-5]
     # df.abate2.loc[pd.to_datetime([2030])]
-    dt = pd.to_datetime(['2030',])
+    dt = pd.to_datetime(['2030','2031'])
     dt
-    df.abate2.loc[dt]
+    df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])]
+    
     'abate 2'
     df.abate2
 
