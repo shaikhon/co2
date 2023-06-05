@@ -280,7 +280,9 @@ co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=1.0,max_v
                           help="Average CO2 sequestration rate per well in Million tons per year (Mt/yr). "
                                "A typical CO2 storage well has a rate of 10 Mt/yr, while an enhanced oil recovery well"
                                "has a rate of 1-5 Mt/yr.")
-
+cols[0].empty()
+cols[1].empty()
+cols[2].empty()
 # geothermal wells:
 n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=1,step=1,
                                    help="Number of geothermal wells drilled annually.")
