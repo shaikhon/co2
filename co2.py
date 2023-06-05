@@ -222,7 +222,6 @@ def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
 
-    df.index
     df.index = pd.to_datetime(df.index)
 
     # Forecast fb prophet
