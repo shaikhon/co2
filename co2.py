@@ -274,6 +274,7 @@ st.markdown('Net0thon 2023 - Dhahran - Saudi Arabia')
 st.markdown("<h1 style='text-align: center; color: white;'>CONTROL PANEL</h1>", unsafe_allow_html=True)
 cols = st.columns([5,1,5], gap='small')
 # CO2 sequesteration wells:
+cols[0].caption('1:')
 n_co2_wells = cols[0].number_input('No. of CO2 sequestration wells:',min_value=0,max_value=None,value=5,step=1,
                                    help="Number of CO2 sequestration wells drilled annually.")
 co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=1.0,max_value=100.0,value=5.0,step=1.0,
