@@ -196,7 +196,8 @@ def prophet_plot(d):
 def co2_ml(n_l3, l3_rate_mty):
     fnames = glob.glob('./data/*.csv')
     n = 15  # forecast years
-
+    n_l3
+    l3_rate_mty
     # rate = .15  # tons co2/yr per tree
     # growth_vector = np.arange(n) * rate
     # l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
@@ -269,8 +270,6 @@ power_rate_d = cols[1].slider('Power output (MWh/day):',min_value=1.0,max_value=
                                "multiplied by 365, assuming the well is running 24/7.")
 power_rate_y = power_rate_d * 365 * 1000 # kwh/yr
 co2_saved_yr = power_rate_y * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
-power_rate_y
-co2_saved_yr
 
 # Liquid Trees:
 # options = np.arange(0, 1000000+1, 10000)
