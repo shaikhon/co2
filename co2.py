@@ -261,12 +261,11 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     'co2_wells_impact'
     co2_wells_impact
 
-    'cum sum total co2 (all methods):'
-    total_co2
+    'SUM co2_wells_impact'
+    sum(co2_wells_impact)
 
-    'df.index[-1]'
-    year_end = df.index[-1].strftime('%Y')
-    year_end
+    'sum total co2 (all methods):'
+    total_co2
 
     title = "Saudi Arabia's CO2 & Population Forecast"
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
@@ -284,7 +283,7 @@ st.markdown("Build scenarios to accelerate the decarbonization of the Kingdom of
 st.markdown('Net0thon 2023 - Dhahran - Saudi Arabia')
 '---'
 
-# TODO:
+#TODO:
 # add source paper
 # add co2 data from other paris accord countries
 # axis font size
