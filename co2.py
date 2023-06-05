@@ -190,7 +190,7 @@ def prophet_plot(d):
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         #         template="plotly_dark",
-        margin=dict(t=50, b=0, l=0, r=0),
+        margin=dict(t=0, b=0, l=0, r=0),
 
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -249,29 +249,20 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     df['abate2'] = df.abate.pad()
     df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
 
-    # metrics
+    # total CO2 absorbed
     total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact)
 
-
+    # CO@ absorption rate by 2030
     dt = pd.to_datetime(['2030','2031'])
     co2_2030 = df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
 
+    # get % to meet target
     to_target = (co2_2030/278)*100
-
-
-    fig = prophet_plot(df)
-
-    'geo_wells_impact'
-    geo_wells_impact
-
-    'SUM geo_wells_impact'
-    S = sum(geo_wells_impact)
-    S
-    'SUM total co2 (all methods):'
-    total_co2
 
     # get last forcast year
     year_end = df.index[-1].strftime('%Y')
+
+    fig = prophet_plot(df)
 
 
     return fig, total_co2_wells[-1], total_geo_wells[-1], total_l3[-1],round(total_co2), \
