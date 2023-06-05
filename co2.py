@@ -264,7 +264,7 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     'SUM co2_wells_impact'
     sum(co2_wells_impact)
 
-    'cum sum total co2 (all methods):'
+    'SUM total co2 (all methods):'
     total_co2
 
     # get last forcast year
