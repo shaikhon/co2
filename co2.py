@@ -185,7 +185,8 @@ def prophet_plot(d):
 
     fig.update_layout(
         # title_text="Saudi Arabia's CO2 & Population Forecast",
-        title=dict(text="Saudi Arabia's CO2 & Population Forecast", font=dict(size=32)),
+        # title=dict(text="Saudi Arabia's CO2 & Population Forecast", font=dict(size=32)),
+        title=None,
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         #         template="plotly_dark",
@@ -203,23 +204,12 @@ def prophet_plot(d):
     return fig
 
 
-def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
+def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
+
     fnames = glob.glob('./data/*.csv')
-    n = 15  # forecast years
+    n = 15  # future forecast years
 
-    # rate = .15  # tons co2/yr per tree
-    # growth_vector = np.arange(n) * rate
-    # l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
-
-    annual_impact = np.arange(n) + 1.0
-
-    # co2 wells
-    co2_wells_impact = annual_impact * n_co2_wells * co2_rate
-
-    # Liquid 3
-    l3_impact = annual_impact * n_l3 * l3_rate_mty
-
-    # kt of co2
+    # Read csv of existing co2 efforts
     df_list = []
     for f in fnames:
         df = pd.read_csv(f).T.dropna(subset=[0])
@@ -232,11 +222,24 @@ def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
 
+    # convert index to datetime
     df.index = pd.to_datetime(df.index)
 
     # Forecast fb prophet
-    cols = ['co2_mt', 'pop']
+    cols = ['co2_mt', 'pop']   # these columns will be forcasted
     df = annual_prophecy(df, cols, forecast_period=n)
+
+    # compute impact of scenarios for dashboard
+    annual_impact = np.arange(n) + 1.0
+
+    # co2 wells
+    co2_wells_impact = annual_impact * n_co2_wells * co2_rate
+    'co2_wells_impact'
+    co2_wells_impact
+    # geothermal wells
+
+    # Liquid 3
+    l3_impact = annual_impact * n_l3_y * l3_rate_mty
 
     # Combined future impact
     df['abate2'] = df.abate.pad()
@@ -245,15 +248,20 @@ def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     # metrics
     total_co2 = sum(l3_impact + co2_wells_impact)
     'cum sum total co2 (all methods):'
+    total_co2
 
     dt = pd.to_datetime(['2030','2031'])
     co2_2030 = df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
 
     to_target = (co2_2030/278)*100
 
+    title = "Saudi Arabia's CO2 & Population Forecast"
+    st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
+                unsafe_allow_html=True)
+
     fig = prophet_plot(df)
 
-    return fig, round(total_co2,2), round(to_target)
+    return fig, round(total_co2,1), round(to_target)
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -304,7 +312,7 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 
 ################################## Smart DASHBOARD
 '---'
-st.markdown("<h1 style='text-align: center; color: white;'>SUSTAINABILITY DASHBOARD</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: white; font-size: medium'>SUSTAINABILITY DASHBOARD</h1>", unsafe_allow_html=True)
 
 cols2 = st.columns([1,5,5,5,1], gap='small')   ########## METRICS COLUMNS
 with st.container():
@@ -313,10 +321,13 @@ with st.container():
     fig, total_co2, to_target = co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty)
 
     # METRICS
-    cols2[1].metric('Units Installed Annually', f"{millify(n_l3)}")
+    cols2[1].metric('Liquid Trees Installed', f"{millify(n_l3)} Anually")
     cols2[2].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
 
+    # total co2 seq. wells
+    # total geothermal wells
+    # total energy generated
     '---'
     # PLOT DASHBOARD
     st.plotly_chart(fig, use_container_width=True)
