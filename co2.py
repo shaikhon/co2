@@ -270,9 +270,7 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     # get last forcast year
     year_end = df.index[-1].strftime('%Y')
 
-    title = "Saudi Arabia's CO2 & Population Forecast"
-    st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
-                unsafe_allow_html=True)
+
 
     return fig, total_l3[-1], total_co2_wells[-1], round(total_co2), round(to_target), year_end
 ####################################################################################
@@ -331,7 +329,7 @@ with st.container():
     fig, total_l3_installed, total_co2_wells_drilled, total_co2, to_target, year_end = co2_ml(
         n_co2_wells, co2_rate, n_l3, l3_rate_mty)
 
-    # TITLE
+    # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
                 unsafe_allow_html=True)
 
@@ -349,6 +347,10 @@ with st.container():
     # total geothermal wells
     # total energy generated
 
+    # CHART TITLE
+    title = "Saudi Arabia's CO2 & Population Forecast"
+    st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
+                unsafe_allow_html=True)
     # PLOT DASHBOARD
     st.plotly_chart(fig, use_container_width=True)
     st.markdown("source: [World Bank](https://data.worldbank.org/)")
