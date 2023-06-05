@@ -171,14 +171,15 @@ def prophet_plot(d):
                              showlegend=True),
                   secondary_y=False)
 
-    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 Goal (278 mty CO2)",
+    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM Goal",
                   annotation_position="top left",
-                  annotation_font_size=20,
+                  annotation_font_size=18,
                   )
 
-    fig.add_hline(y=d.yhat_y.iloc[-1], line_width=3, line_dash="dash", line_color="cyan", annotation_text="Net-zero Goal",
+    fig.add_hline(y=d.yhat_y.iloc[-1], line_width=3, line_dash="dash", line_color="cyan",
+                  annotation_text="2060 Net-zero Goal",
                   annotation_position="top left",
-                  annotation_font_size=20,
+                  annotation_font_size=18,
                   )
 
 
