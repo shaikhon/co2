@@ -196,16 +196,15 @@ def prophet_plot(d):
 def co2_ml(n_l3, l3_rate_mty):
     fnames = glob.glob('./data/*.csv')
     n = 15  # forecast years
-    l3_rate_mty
+
     # rate = .15  # tons co2/yr per tree
     # growth_vector = np.arange(n) * rate
     # l3 = np.cumsum(growth_vector * l3_per_yr) / 1e6  # million tons per year
 
-    l3_impact = np.arange(n) + 1.0
-    l3_impact *= n_l3
-    l3_impact
-    l3_impact *= l3_rate_mty
-    l3_impact
+    annual_impact = np.arange(n) + 1.0
+
+    # Liquid 3
+    l3_impact = annual_impact * n_l3 * l3_rate_mty
 
     # kt of co2
     df_list = []
@@ -222,15 +221,16 @@ def co2_ml(n_l3, l3_rate_mty):
 
     df.index = pd.to_datetime(df.index)
 
+    # Forecast fb prophet
     cols = ['co2_mt', 'pop']
-
     df = annual_prophecy(df, cols, forecast_period=n)
-    df['abate2'] = df.abate.pad()
 
+    # Combined future impact
+    df['abate2'] = df.abate.pad()
     df.abate2.iloc[-n:] += l3_impact
 
+    # metrics
     total_co2 = sum(l3_impact)
-
     to_target = (df.abate2.iloc[-1]/278)*100
 
     fig = prophet_plot(df)
