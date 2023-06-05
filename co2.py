@@ -303,7 +303,7 @@ with st.container():
     fig, total_co2, to_target = co2_ml(n_l3, l3_rate_mty)
 
     # METRICS
-    cols2[1].metric('Units Installed Annually', f"{millify(l3_per_yr)}")
+    cols2[1].metric('Units Installed Annually', f"{millify(n_l3)}")
     cols2[2].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
 
