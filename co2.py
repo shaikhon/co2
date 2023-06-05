@@ -264,8 +264,11 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
     'SUM co2_wells_impact'
     sum(co2_wells_impact)
 
-    'sum total co2 (all methods):'
+    'cum sum total co2 (all methods):'
     total_co2
+
+    # get last forcast year
+    year_end = df.index[-1].strftime('%Y')
 
     title = "Saudi Arabia's CO2 & Population Forecast"
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
@@ -322,7 +325,6 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 
 ################################## Smart DASHBOARD
 '---'
-
 with st.container():
 
     # CO2 ML prediction
