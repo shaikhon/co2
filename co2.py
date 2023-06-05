@@ -233,6 +233,7 @@ def co2_ml(n_l3, l3_rate_mty):
 
     # metrics
     total_co2 = sum(l3_impact)
+    total_co2
     to_target = (df.abate2.iloc[-1]/278)*100
     df.abate2.iloc[-1]
     fig = prophet_plot(df)
