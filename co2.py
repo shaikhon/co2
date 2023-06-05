@@ -36,9 +36,6 @@ def co2_map(color_by):
         df_list.append(pd.read_csv(f, index_col=False))
 
     df = pd.concat(df_list)
-    # df.drop(inplace=True, columns=['Primary Fuel', 'Unit Type'], errors='ignore')
-
-    # st.markdown("<h1 style='text-align: center; color: white;'>CO2 Emissions</h1>", unsafe_allow_html=True)
 
     order = {'Sector': ['Electricity', 'Desalination', 'Petrochemicals', 'Refinery', 'Cement', 'Steel']}
     colors = ['red', 'blue', 'yellow', 'green', 'cyan', 'purple', 'orange']
@@ -345,12 +342,14 @@ with st.container():
     st.plotly_chart(fig, use_container_width=True)
     st.markdown("source: [World Bank](https://data.worldbank.org/)")
 
+
+################################## CO2 MAP
 '---'
 title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white;'>{title}</h1>", unsafe_allow_html=True)
 # st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
-with st.expander("CO2 Emissions Map - 2020"):
+with st.expander("CO2 Emissions Map - 2020", True):
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
