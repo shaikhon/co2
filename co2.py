@@ -272,11 +272,11 @@ st.markdown('Net0thon 2023 - Dhahran - Saudi Arabia')
 
 ################################## CONTROL PANEL
 st.markdown("<h1 style='text-align: center; color: white;'>CONTROL PANEL</h1>", unsafe_allow_html=True)
-cols = st.columns(2)
+cols = st.columns([5,1,5], gap='small')
 # CO2 sequesteration wells:
 n_co2_wells = cols[0].number_input('No. of CO2 sequestration wells:',min_value=0,max_value=None,value=5,step=1,
                                    help="Number of CO2 sequestration wells drilled annually.")
-co2_rate = cols[1].slider('CO2 sequestration rate (Mt/yr):',min_value=1.0,max_value=100.0,value=5.0,step=1.0,
+co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=1.0,max_value=100.0,value=5.0,step=1.0,
                           help="Average CO2 sequestration rate per well in Million tons per year (Mt/yr). "
                                "A typical CO2 storage well has a rate of 10 Mt/yr, while an enhanced oil recovery well"
                                "has a rate of 1-5 Mt/yr.")
@@ -284,7 +284,7 @@ co2_rate = cols[1].slider('CO2 sequestration rate (Mt/yr):',min_value=1.0,max_va
 # geothermal wells:
 n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=1,step=1,
                                    help="Number of geothermal wells drilled annually.")
-power_rate_d = cols[1].slider('Power output (MWh/day):',min_value=1.0,max_value=50.0,value=1.0,step=1.0,
+power_rate_d = cols[-1].slider('Power output (MWh/day):',min_value=1.0,max_value=50.0,value=1.0,step=1.0,
                           help="Average power output per well in mega watts hours (MWh) per day. This rate will be "
                                "multiplied by 365, assuming the well is running 24/7.")
 power_rate_y = power_rate_d * 365 * 1000 # kwh/yr
@@ -292,7 +292,7 @@ co2_saved_yr = power_rate_y * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
 
 # Liquid Trees:
 n_l3 = cols[0].number_input('No. of Liquid Trees:', 0, None, 100, 100,help="Number of liquid trees installed annually")
-l3_rate_kgy = cols[1].slider('CO2 absorption rate (Kg/yr):',min_value=10,max_value=1000,value=100,step=10,
+l3_rate_kgy = cols[-1].slider('CO2 absorption rate (Kg/yr):',min_value=10,max_value=1000,value=100,step=10,
                         help="Average CO2 absorption (abatement) rate per tree in kilograms per year")
 l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 
@@ -304,6 +304,7 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 # while wells that are used to store CO2 in depleted oil and gas reservoirs typically have injection rates of 1-5 Mt/yr.
 
 ################################## Smart DASHBOARD
+'---'
 st.markdown("<h1 style='text-align: center; color: white;'>SUSTAINABILITY DASHBOARD</h1>", unsafe_allow_html=True)
 
 cols2 = st.columns(5)   ########## METRICS COLUMNS
