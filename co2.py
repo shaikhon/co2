@@ -186,7 +186,7 @@ def prophet_plot(d):
     fig.update_layout(
         # title_text="Saudi Arabia's CO2 & Population Forecast",
         # title=dict(text="Saudi Arabia's CO2 & Population Forecast", font=dict(size=32)),
-        title=None,
+        # title=None,
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         #         template="plotly_dark",
@@ -253,9 +253,6 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
 
     to_target = (co2_2030/278)*100
 
-    title = "Saudi Arabia's CO2 & Population Forecast"
-    st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
-                unsafe_allow_html=True)
 
     fig = prophet_plot(df)
 
@@ -264,6 +261,10 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
 
     'cum sum total co2 (all methods):'
     total_co2
+
+    title = "Saudi Arabia's CO2 & Population Forecast"
+    st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>",
+                unsafe_allow_html=True)
 
     return fig, round(total_co2,1), round(to_target)
 ####################################################################################
@@ -328,11 +329,12 @@ with st.container():
     cols2[1].metric('Liquid Trees Installed', f"{millify(n_l3)} Anually")
     cols2[2].metric('Total CO2 Absorbed', f"{total_co2} M Tons")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
+    '---'
 
     # total co2 seq. wells
     # total geothermal wells
     # total energy generated
-    '---'
+
     # PLOT DASHBOARD
     st.plotly_chart(fig, use_container_width=True)
     st.markdown("source: [World Bank](https://data.worldbank.org/)")
