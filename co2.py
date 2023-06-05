@@ -240,7 +240,7 @@ def co2_ml(n_co2_wells, co2_rate, n_l3, l3_rate_mty):
     total_co2
 
     dt = pd.to_datetime(['2030','2031'])
-    co2_2030 = df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])]
+    co2_2030 = df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values
     co2_2030
     to_target = (co2_2030/278)*100
 
