@@ -130,7 +130,7 @@ def prophet_plot(d):
                              line=dict(color='magenta', width=2, dash='dash'),
                              hovertemplate='<i>Pop. Forecast</i>: %{y:.2f}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='Population Forecast',
+                             name='Pop. Forecast',
                              showlegend=True),
                   secondary_y=True)
 
@@ -166,7 +166,7 @@ def prophet_plot(d):
                              line=dict(color='blue', width=2, dash='dash'),
                              hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='Abatement Estimate',
+                             name='Abate. Estimate',
                              showlegend=True),
                   secondary_y=False)
 
