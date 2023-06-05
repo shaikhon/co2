@@ -234,8 +234,7 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
 
     # co2 wells
     co2_wells_impact = annual_impact * n_co2_wells * co2_rate
-    'co2_wells_impact'
-    co2_wells_impact
+
     # geothermal wells
 
     # Liquid 3
@@ -247,8 +246,7 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
 
     # metrics
     total_co2 = sum(l3_impact + co2_wells_impact)
-    'cum sum total co2 (all methods):'
-    total_co2
+
 
     dt = pd.to_datetime(['2030','2031'])
     co2_2030 = df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
@@ -260,6 +258,12 @@ def co2_ml(n_co2_wells, co2_rate, n_l3_y, l3_rate_mty):
                 unsafe_allow_html=True)
 
     fig = prophet_plot(df)
+
+    'co2_wells_impact'
+    co2_wells_impact
+
+    'cum sum total co2 (all methods):'
+    total_co2
 
     return fig, round(total_co2,1), round(to_target)
 ####################################################################################
@@ -279,7 +283,7 @@ st.markdown('Net0thon 2023 - Dhahran - Saudi Arabia')
 # axis font size
 
 ################################## CONTROL PANEL
-st.markdown("<h1 style='text-align: center; color: white;'>CONTROL PANEL</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: white; font-size: medium'>CONTROL PANEL</h1>", unsafe_allow_html=True)
 cols = st.columns([6,1,6], gap='small')
 # CO2 sequesteration wells:
 n_co2_wells = cols[0].number_input('No. of CO2 sequestration wells:',min_value=0,max_value=None,value=5,step=1,
