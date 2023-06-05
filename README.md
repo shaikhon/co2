@@ -12,6 +12,6 @@ Using this webpage you can test different scenarios of CO2 abatement strategies 
 
 Features:
 - Graph of historical population and CO2 emissions (source: [World Bank](https://data.worldbank.org/))
-- Graph of future forecasts of population, CO2 emissions and CO@ abatement rates in Saudi Arabia using facebook [prophet](https://facebook.github.io/prophet/) 
+- Graph of future forecasts of population, CO2 emissions and CO2 abatement rates in Saudi Arabia using facebook [prophet](https://facebook.github.io/prophet/) 
 - Map visualization of CO2 emissions from the leading industrial sectors (source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222))
-- Collected data of local CO2 sequesteration efforts
+- Collected data from local CO2 sequesteration and utilization efforts, including: Saudi Aramco, SABIC, and Ministry of Agriculture
