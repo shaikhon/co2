@@ -54,7 +54,6 @@ def co2_map(color_by):
                             # width=450,
                             height=500)
     fig.update_layout(
-        # title_text="2020 Saudi Arabia's CO2 Emissions",
         mapbox_style="carto-positron")  # carto-positron
     fig.update_layout(margin={"r": 0, "t": 30, "l": 0, "b": 0})
 
@@ -173,20 +172,16 @@ def prophet_plot(d):
 
     fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM Goal",
                   annotation_position="top left",
-                  annotation_font_size=18,
+                  annotation_font_size=16,
                   )
 
     fig.add_hline(y=d.yhat_y.iloc[-1], line_width=3, line_dash="dash", line_color="cyan",
                   annotation_text="2060 Net-zero Goal",
                   annotation_position="top left",
-                  annotation_font_size=18,
+                  annotation_font_size=16,
                   )
 
-
     fig.update_layout(
-        # title_text="Saudi Arabia's CO2 & Population Forecast",
-        # title=dict(text="Saudi Arabia's CO2 & Population Forecast", font=dict(size=32)),
-        # title=None,
         hovermode="closest",
         hoverlabel=dict(align="left", bgcolor="rgba(0,0,0,0)"),
         #         template="plotly_dark",
