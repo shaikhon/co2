@@ -294,7 +294,7 @@ co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=0.5,max_v
                                "A typical CO2 storage well has a rate of 10 Mt/yr, while an enhanced oil recovery well"
                                " has a rate of 1-5 Mt/yr.")
 # geothermal wells:
-n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=1,step=1,
+n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=5,step=1,
                                    help="Number of geothermal wells drilled annually.")
 power_rate_d = cols[-1].slider('Power output (MWh/day):',min_value=0.5,max_value=100.0,value=2.0,step=0.5,
                           help="Average power output per well in mega watt hours (MWh) per day. This rate will be "
@@ -343,9 +343,6 @@ with st.container():
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
-    # total co2 seq. wells
-    # total geothermal wells
-    # total energy generated
 
     # CHART TITLE
     title = "Saudi Arabia's CO2 & Population Forecast"
