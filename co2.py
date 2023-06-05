@@ -368,5 +368,6 @@ with st.expander("CO2 Emissions Map - 2020"):
 '---'
 
 with st.expander("Did you know?"):
-    'The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
-    'where electricity generation is growing at an annual rate of around 6.3 % '
+    '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
+    'where electricity generation is growing 6.3% annually.'
+    '- In 2020, the kingdom generated 282 TWh to meet consumer power demand.'
