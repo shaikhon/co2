@@ -278,10 +278,10 @@ st.markdown('Net0thon 2023 - Dhahran - Saudi Arabia')
 ################################## CONTROL PANEL
 st.markdown("<h1 style='text-align: center; color: white; font-size: medium'>CONTROL PANEL</h1>", unsafe_allow_html=True)
 cols = st.columns([6,1,6], gap='small')
-# CO2 sequesteration wells:
+# CO2 sequestration wells:
 n_co2_wells = cols[0].number_input('No. of CO2 sequestration wells:',min_value=0,max_value=None,value=5,step=1,
                                    help="Number of CO2 sequestration wells drilled annually.")
-co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=0.5,max_value=50.0,value=2.0,step=0.5,
+co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=0.5,max_value=50.0,value=5.0,step=0.5,
                           help="Average CO2 sequestration rate per well in Million tons per year (Mt/yr). "
                                "A typical CO2 storage well has a rate of 10 Mt/yr, while an enhanced oil recovery well"
                                " has a rate of 1-5 Mt/yr.")
