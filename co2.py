@@ -293,8 +293,10 @@ def make_pie(df):
     last_row = temp_df.iloc[-1,:].to_list()
     last_row
     methods=['CO2 Wells', 'Geothermal Wells','Liquid Trees', 'Mangroves','SABIC','EOR']
-
-    temp_df = pd.DataFrame([methods, last_row], columns=['Method', 'CO2'])
+    arr = np.array([methods, last_row])
+    arr.shape
+    arr
+    temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
 
     temp_df
 
