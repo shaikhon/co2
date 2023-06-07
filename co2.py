@@ -243,26 +243,28 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     l3_impact = total_l3 * l3_rate_mty
 
     # include other kingdom efforts
-    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
-    # assume mangroves planting rate is steady
-    # df.mangrove.interpolate(method='linear', inplace=True)
-    df.mangrove.pad(inplace=True)
-    # df.mangrove.iloc[-n:] += annual_impact
+    # df['abate'] = df.utmn_eor + df.sabic + df.mangrove
 
-    df.sabic.interpolate(inplace=True)
-    df.utmn_eor.interpolate(inplace=True)
+    # assume mangroves planting rate is steady
+    df.mangrove.pad(inplace=True)
+    df.mangrove.iloc[-n:] += (annual_impact * 0.5)
+    df.sabic.pad(inplace=True)
+    df.utmn_eor.pad(inplace=True)
 
 
     # Combined future impact
-    df['abate2'] = df.abate.pad()
-    df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
+    # df['abate2'] = df.abate.pad()
+
+    # df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
+    df.abate.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
 
     # total CO2 absorbed
     total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact) * 1e-3   # billion tons
 
     # CO@ absorption rate by 2030
     dt = pd.to_datetime(['2030','2031'])
-    co2_2030 = df.abate2.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
+    co2_2030 = df.abate.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
 
     # get % to meet target
     to_target = (co2_2030/278)*100
