@@ -357,7 +357,7 @@ with st.container():
     cols2[3].metric('Total Liquid Trees Installed', f"{millify(df.l3[-1])}")
 
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2:.1f} BT")
-    cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1].round()} TWh")
+    cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1]:.1f} TWh")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
