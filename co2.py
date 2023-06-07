@@ -294,9 +294,9 @@ def make_pie(df):
     last_row.T.shape
     last_row.T
 
-    temp_df = pd.DataFrame(data=[last_row, last_row.index])
+    temp_df = pd.DataFrame(data=last_row)
     temp_df
-    
+
     fig = px.pie(last_row, names=last_row.index)
     fig.update_layout(
         template="plotly_dark",
