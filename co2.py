@@ -256,6 +256,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     fig = prophet_plot(df)
 
+    df
 
     return fig, total_co2_wells[-1], total_geo_wells[-1], total_l3[-1],round(total_co2,2), \
            round(power_generated_y[-1]), round(to_target), year_end
@@ -349,10 +350,21 @@ title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 # st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
-with st.expander("CO2 Emissions Map - 2020", True):
+tab1, tab2 = st.tabs([f"CO2 Reduction By Type - {year_end} ", "CO2 Emissions Map - 2020"])
+
+with tab1:
+    st.header("Contribution to Total CO2 Reduction")
+
+with tab2:
+    st.header("2020 Saudi Arabia's CO2 Emissions")
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
-    st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+    st.plotly_chart(co2_map(color_by), use_container_width=True)  # USE COLUMN WIDTH OF CONTAINER
     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
+
+# with st.expander("CO2 Emissions Map - 2020", True):
+#     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
+#     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
+#     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
 
 '---'
 
