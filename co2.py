@@ -215,7 +215,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
 
     # convert index to datetime
-    df.index = pd.to_datetime(df.index)
+    df.index = pd.to_datetime(df.index, format='%Y-12-31')
 
     # Forecast fb prophet
     cols = ['co2_mt', 'pop']   # these columns will be forcasted
