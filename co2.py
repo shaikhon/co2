@@ -296,8 +296,10 @@ def make_pie(df):
     arr = np.array([methods, last_row]).T
     temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
 
-    fig = px.pie(temp_df, values='CO2', names='Method', title='CO2 Reduction Per Method')
-    fig.update_traces(textposition='outside', textinfo='percent+label',textfont_size=20)
+    fig = px.pie(temp_df, values='CO2', names='Method')
+    fig.update_traces(
+        # textposition='outside',
+        textinfo='percent+label',textfont_size=20)
 
     fig.update_layout(
         template="plotly_dark",
@@ -400,7 +402,7 @@ st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{t
 tab1, tab2 = st.tabs([f"CO2 Reduction Effectiveness - {year_end} ", "CO2 Emissions Map - 2020"])
 
 with tab1:
-    st.header("Contribution to Total CO2 Reduction")
+    st.header(f"Contribution to Total CO2 Reduction by {year_end}")
     # st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
     st.plotly_chart(make_pie(df), use_container_width=True)
 
