@@ -289,18 +289,15 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
 def make_pie(df):
 
-    temp_df = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']] #.reset_index(drop=True)
-    last_row = temp_df.iloc[-1,:].to_list()
-    last_row
+    last_row = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].iloc[-1,:].to_list()
     methods=['CO2 Wells', 'Geothermal Wells','Liquid Trees', 'Mangroves','SABIC','EOR']
+
     arr = np.array([methods, last_row]).T
-    arr.shape
-    arr
     temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
 
-    temp_df
+    fig = px.pie(temp_df, values='CO2', names='Method', title='CO2 Reduction Per Method')
+    fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=20)
 
-    fig = px.pie(temp_df, values='CO2', names='Method')
     fig.update_layout(
         template="plotly_dark",
         margin=dict(t=0, b=0, l=0, r=0),
