@@ -380,7 +380,8 @@ tab1, tab2 = st.tabs([f"CO2 Reduction By Type - {year_end} ", "CO2 Emissions Map
 
 with tab1:
     st.header("Contribution to Total CO2 Reduction")
-    st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2'])
+    st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
+    
 with tab2:
     st.header("2020 Saudi Arabia's CO2 Emissions")
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
