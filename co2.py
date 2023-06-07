@@ -212,12 +212,9 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
                        2: 'utmn_eor', 3: 'sabic', 4: 'mangrove'},
               inplace=True)
 
-    # assume mangroves planting rate is steady keep growing
 
-    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
 
-    df.mangrove.interpolate(inplace=True)
     # convert index to datetime
     df.index = [f"{y}-12-31" for y in df.index]
     df.index = pd.to_datetime(df.index, format='%Y-%m-%d')
@@ -225,6 +222,12 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # Forecast fb prophet
     cols = ['co2_mt', 'pop']   # these columns will be forcasted
     df = annual_prophecy(df, cols, forecast_period=n)
+
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
+    # assume mangroves planting rate is steady
+    df.mangrove.interpolate(inplace=True)
+    df.sabic.interpolate(inplace=True)
+    df.utmn_eor.interpolate(inplace=True)
 
     # compute impact of scenarios for dashboard
     annual_impact = np.arange(n) + 1.0
