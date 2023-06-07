@@ -289,9 +289,9 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
 def make_pie(df):
 
-    temp_df = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].reset_index()
+    temp_df = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].reset_index(drop=True)
     last_row = temp_df.iloc[-1,:]
-    last_row.T
+    last_row
 
     fig = px.pie(df, values="pct", names="Holder")
     fig.update_layout(
