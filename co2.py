@@ -214,7 +214,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     # unit conversions
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000 # kilo ton to million tons
-    df.mangrove *= 1e3 * 1e4 * 50 * 1e-3 * 1e-6 # kilo hectar to mty (assume 50 kg/m2/yr rate)
+    df.mangrove *= 1e3 * 1e4 * 20 * 1e-3 * 1e-6 # kilo hectar to mty (assume 20 kg/m2/yr rate)
 
     # convert index to datetime
     df.index = [f"{y}-12-31" for y in df.index]
@@ -275,10 +275,10 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     year_end = df.index[-1].strftime('%Y')
 
     df.drop(columns=['trend_x', 'trend_lower_x', 'trend_upper_x',
-                     'trend_y', 'trend_lower_x', 'trend_upper_x',], errors='ignore', inplace=True)
+                     'trend_y', 'trend_lower_y', 'trend_upper_y',
+                     'yhat_lower_x', 'yhat_upper_x', 'yhat_lower_y', 'yhat_upper_y'], errors='ignore', inplace=True)
 
     fig = prophet_plot(df)
-
 
     df
 
