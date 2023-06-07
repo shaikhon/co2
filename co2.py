@@ -211,12 +211,15 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     df.rename(columns={0: 'co2_kt', 1: 'pop',
                        2: 'utmn_eor', 3: 'sabic', 4: 'mangrove'},
               inplace=True)
+
+    # assume mangroves planting rate is steady keep growing
+
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove
     df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
 
+    df.mangrove.interpolate(inplace=True)
     # convert index to datetime
     df.index = [f"{y}-12-31" for y in df.index]
-    df.index
     df.index = pd.to_datetime(df.index, format='%Y-%m-%d')
 
     # Forecast fb prophet
