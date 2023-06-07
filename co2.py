@@ -227,6 +227,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # co2 wells
     total_co2_wells = annual_impact * n_co2_wells
     co2_wells_impact = total_co2_wells * co2_rate
+    df['co2_wells_impact'].iloc[-n:] = co2_wells_impact
 
     # geothermal wells
     total_geo_wells = annual_impact * n_geo_wells
