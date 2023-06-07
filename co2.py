@@ -116,7 +116,7 @@ def prophet_plot(d):
     # plot population Actual
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d['pop'],
                              line=dict(color='magenta', width=2),
-                             hovertemplate='<i>Pop.</i>: %{y:.2f}' +
+                             hovertemplate='<i>Pop.</i>: %{y:d}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Population',
                              showlegend=True),
@@ -134,7 +134,7 @@ def prophet_plot(d):
     # plot (CO2 emissions) Actual
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
                              line=dict(color=color, width=2),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Tons' +
+                             hovertemplate='<i>CO2</i>: %{y:.1f} Million Tons' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2',
                              showlegend=True),
@@ -143,7 +143,7 @@ def prophet_plot(d):
     # plot (CO2 emissions) Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
                              line=dict(color=color, width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Tons' +
+                             hovertemplate='<i>CO2</i>: %{y:.1f} Million Tons' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2 Forecast',
                              showlegend=True),
@@ -152,7 +152,7 @@ def prophet_plot(d):
     # plot (CO2 abatment)
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate,
                              line=dict(color='blue', width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Tons' +
+                             hovertemplate='<i>CO2</i>: %{y:.1f} Million Tons' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2 Reduction',
                              showlegend=True),
@@ -230,27 +230,29 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # co2 wells
     total_co2_wells = annual_impact * n_co2_wells
     co2_wells_impact = total_co2_wells * co2_rate
-    df['co2_wells_impact'] = np.nan
-    df['co2_wells_impact'].iloc[-n:] = co2_wells_impact
+    df['cwells'] = np.nan
+    df['cwells'].iloc[-n:] = co2_wells_impact
 
     # geothermal wells
     total_geo_wells = annual_impact * n_geo_wells
     geo_wells_impact = total_geo_wells * co2_saved_yr
+    df['gwells'] = np.nan
+    df['gwells'].iloc[-n:] = geo_wells_impact
     power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
 
     # Liquid 3
     total_l3 = annual_impact * n_l3_y
     l3_impact = total_l3 * l3_rate_mty
+    df['l3'] = np.nan
+    df['l3'].iloc[-n:] = l3_impact
 
     # include other kingdom efforts
     # df['abate'] = df.utmn_eor + df.sabic + df.mangrove
 
-    # assume mangroves planting rate is steady
     df.mangrove.pad(inplace=True)
-    df.mangrove.iloc[-n:] += (annual_impact * 0.5)
+    df.mangrove.iloc[-n:] += (annual_impact * 0.5)     # assume mangroves planting rate is steady
     df.sabic.pad(inplace=True)
     df.utmn_eor.pad(inplace=True)
-
 
     # Combined future impact
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove
@@ -272,7 +274,11 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # get last forcast year
     year_end = df.index[-1].strftime('%Y')
 
+    df.drop(columns=['trend_x', 'trend_lower_x', 'trend_upper_x',
+                     'trend_y', 'trend_lower_x', 'trend_upper_x',], errors='ignore', inplace=True)
+
     fig = prophet_plot(df)
+
 
     df
 
