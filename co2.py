@@ -400,7 +400,7 @@ tab1, tab2 = st.tabs([f"CO2 Reduction Effectiveness - {year_end} ", "CO2 Emissio
 with tab1:
     st.header(f"Contribution to Total CO2 Reduction by {year_end}")
     # st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
-    st.plotly_chart(make_pie(df), use_container_width=True)
+    st.plotly_chart(make_pie(df), use_container_width=True, theme='streamlit')
 
 with tab2:
     st.header("2020 Saudi Arabia's CO2 Emissions")
