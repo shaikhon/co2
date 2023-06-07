@@ -296,7 +296,7 @@ def make_pie(df):
     arr = np.array([methods, last_row]).T
     temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
 
-    fig = px.pie(temp_df, values='CO2', names='Method')
+    fig = px.pie(temp_df, values='CO2', names='Method', hole=0.5)
     fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=18)
 
     fig.update_layout(
