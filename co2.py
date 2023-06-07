@@ -291,10 +291,10 @@ def make_pie(df):
 
     temp_df = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].reset_index(drop=True)
     last_row = temp_df.iloc[-1,:]
-    last_row.shape
-    last_row
+    last_row.T.shape
+    last_row.T
 
-    fig = px.pie(df, values="pct", names="Holder")
+    fig = px.pie(last_row, names=last_row.index)
     fig.update_layout(
         template="plotly_dark",
         margin=dict(t=0, b=0, l=0, r=0),
