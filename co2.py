@@ -187,9 +187,9 @@ def prophet_plot(d):
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=True,
-        yaxis=dict(showgrid=False, tickfont = dict(size=18),
+        yaxis=dict(showline= False, showgrid=False, tickfont = dict(size=18),
                    title={"font": dict(size=20), "text": "CO2 (Million Ton)", "standoff": 10}),
-        yaxis2=dict(showgrid=False, range=[0, 50e6], tickfont = dict(size=18),
+        yaxis2=dict(zeroline=False, showgrid=False, range=[0, 50e6], tickfont = dict(size=18),
                     title={"font": dict(size=20), "text": "Population", "standoff": 10}),
         xaxis=dict(showline=False, tickfont = dict(size=18),)
     )
