@@ -228,25 +228,26 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     annual_impact = np.arange(n) + 1.0
 
     # co2 wells
-    total_co2_wells = annual_impact * n_co2_wells
-    co2_wells_impact = total_co2_wells * co2_rate
-    df['cwells'] = np.nan
-    df['cwells'].iloc[-n:] = co2_wells_impact
-    df.cwells.fillna(0, inplace=True)
+    # total_co2_wells = annual_impact * n_co2_wells
+    # co2_wells_impact = total_co2_wells * co2_rate
+    df['cwells'] = 0
+    df['cwells'].iloc[-n:] = annual_impact * n_co2_wells
+    df['cwells_co2'] = df.cwells * co2_rate
     # geothermal wells
-    total_geo_wells = annual_impact * n_geo_wells
-    geo_wells_impact = total_geo_wells * co2_saved_yr
-    df['gwells'] = np.nan
-    df['gwells'].iloc[-n:] = geo_wells_impact
-    df.gwells.fillna(0, inplace=True)
-    power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
+    # total_geo_wells = annual_impact * n_geo_wells
+    # geo_wells_impact = total_geo_wells * co2_saved_yr
+    df['gwells'] = 0
+    df['gwells'].iloc[-n:] = annual_impact * n_geo_wells
+    df['gwells_co2'] = df.gwells * co2_saved_yr
+    df['power_gen_y'] = df.gwells * power_rate_y * 1e-6  # TWh
+    # power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
 
     # Liquid 3
-    total_l3 = annual_impact * n_l3_y
-    l3_impact = total_l3 * l3_rate_mty
-    df['l3'] = np.nan
-    df['l3'].iloc[-n:] = l3_impact
-    df.l3.fillna(0, inplace=True)
+    # total_l3 = annual_impact * n_l3_y
+    # l3_impact = total_l3 * l3_rate_mty
+    df['l3'] = 0
+    df['l3'].iloc[-n:] = annual_impact * n_l3_y
+    df['l3_co2'] = df.l3 * l3_rate_mty
 
     # include other kingdom efforts
     # df['abate'] = df.utmn_eor + df.sabic + df.mangrove
@@ -257,16 +258,16 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     df.utmn_eor.pad(inplace=True)
 
     # Combined future impact
-    df['abate'] = df.utmn_eor + df.sabic + df.mangrove + df.cwells + df.gwells + df.l3
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove + df.cwells_co2 + df.gwells_co2 + df.l3_co2
     # df['abate2'] = df.abate.pad()
 
     # df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
     # df.abate.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
 
     # total CO2 absorbed
-    total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact) * 1e-3   # billion tons
+    # total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact) * 1e-3   # billion tons
 
-    # CO@ absorption rate by 2030
+    # CO2 absorption rate by 2030
     dt = pd.to_datetime(['2030','2031'])
     co2_2030 = df.abate.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
 
@@ -284,8 +285,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     df
 
-    return fig, total_co2_wells[-1], total_geo_wells[-1], total_l3[-1],round(total_co2,2), \
-           round(power_generated_y[-1]), round(to_target), year_end
+    return fig, round(to_target), year_end
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -339,9 +339,10 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 with st.container():
 
     # CO2 ML prediction
-    fig, total_co2_wells_drilled, total_geo_wells_drilled, total_l3_installed, total_co2, power_generated,\
-    to_target, year_end = co2_ml(
+    fig, to_target, year_end = co2_ml(
         n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr,  n_l3, l3_rate_mty)
+
+    total_co2 = sum(df.cwells_co2 + df.gwells_co2 + df.l3_co2) * 1e-3   # billion tons
 
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
@@ -351,12 +352,12 @@ with st.container():
     cols2 = st.columns([1, 5, 5, 5, 1], gap='small')  ########## METRICS COLUMNS
 
     # METRICS
-    cols2[1].metric('Total CO2 Wells Drilled', f"{millify(total_co2_wells_drilled)}")
-    cols2[2].metric('Total Geothermal Wells Drilled', f"{millify(total_geo_wells_drilled)}")
-    cols2[3].metric('Total Liquid Trees Installed', f"{millify(total_l3_installed)}")
+    cols2[1].metric('Total CO2 Wells Drilled', f"{millify(df.cwells[-1])}")
+    cols2[2].metric('Total Geothermal Wells Drilled', f"{millify(df.gwells[-1])}")
+    cols2[3].metric('Total Liquid Trees Installed', f"{millify(df.l3[-1])}")
 
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2} BT")
-    cols2[2].metric('Total Power Generated', f"{power_generated} TWh")
+    cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1].round()} TWh")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
