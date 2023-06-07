@@ -287,6 +287,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     return fig, df, round(to_target), year_end
 
+
 def make_pie(df):
 
     last_row = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].iloc[-1,:].to_list()
@@ -296,7 +297,7 @@ def make_pie(df):
     temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
 
     fig = px.pie(temp_df, values='CO2', names='Method', title='CO2 Reduction Per Method')
-    fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=20)
+    fig.update_traces(textposition='outside', textinfo='percent+label',textfont_size=20)
 
     fig.update_layout(
         template="plotly_dark",
@@ -396,12 +397,11 @@ title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 # st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
-tab1, tab2 = st.tabs([f"CO2 Reduction By Type - {year_end} ", "CO2 Emissions Map - 2020"])
+tab1, tab2 = st.tabs([f"CO2 Reduction Effectiveness - {year_end} ", "CO2 Emissions Map - 2020"])
 
 with tab1:
     st.header("Contribution to Total CO2 Reduction")
-    st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
-
+    # st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
     st.plotly_chart(make_pie(df), use_container_width=True)
 
 with tab2:
