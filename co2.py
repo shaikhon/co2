@@ -151,7 +151,7 @@ def prophet_plot(d):
 
     # plot (CO2 abatment)
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate,
-                             line=dict(color='blue', width=2),
+                             line=dict(color='blue', width=2, dash='dash'),
                              hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Abatement',
@@ -187,7 +187,7 @@ def prophet_plot(d):
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=True,
-        yaxis=dict(showline= False, showgrid=False, tickfont = dict(size=18),
+        yaxis=dict(zeroline= False, showgrid=False, tickfont = dict(size=18),
                    title={"font": dict(size=20), "text": "CO2 (Million Ton)", "standoff": 10}),
         yaxis2=dict(zeroline=False, showgrid=False, range=[0, 50e6], tickfont = dict(size=18),
                     title={"font": dict(size=20), "text": "Population", "standoff": 10}),
