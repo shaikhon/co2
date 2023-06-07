@@ -290,13 +290,11 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 def make_pie(df):
 
     temp_df = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']] #.reset_index(drop=True)
-    last_row = temp_df.iloc[-1,:].values
-    last_row.shape
+    last_row = temp_df.iloc[-1,:].to_list()
     last_row
-    methods=np.array(['CO2 Wells', 'Geothermal Wells','Liquid Trees', 'Mangroves','SABIC','EOR'])
-    methods.shape
+    methods=['CO2 Wells', 'Geothermal Wells','Liquid Trees', 'Mangroves','SABIC','EOR']
 
-    temp_df = pd.DataFrame([last_row,methods], columns=['Method', 'CO2'])
+    temp_df = pd.DataFrame([methods, last_row], columns=['Method', 'CO2'])
 
     temp_df
 
