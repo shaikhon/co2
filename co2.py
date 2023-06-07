@@ -342,8 +342,6 @@ with st.container():
     fig, df, to_target, year_end = co2_ml(
         n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr,  n_l3, l3_rate_mty)
 
-    total_co2 = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2']].sum().sum() * 1e-3    # billion tons
-    total_co2
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
                 unsafe_allow_html=True)
@@ -351,16 +349,17 @@ with st.container():
     # METRIC COLUMNS
     cols2 = st.columns([1, 5, 5, 5, 1], gap='small')  ########## METRICS COLUMNS
 
-    # METRICS
+    # COMPUTE METRICS
+    total_co2 = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2']].sum().sum() * 1e-3    # billion tons
+
+    # DISPLAY METRICS
     cols2[1].metric('Total CO2 Wells Drilled', f"{millify(df.cwells[-1])}")
     cols2[2].metric('Total Geothermal Wells Drilled', f"{millify(df.gwells[-1])}")
     cols2[3].metric('Total Liquid Trees Installed', f"{millify(df.l3[-1])}")
-
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2:.1f} BT")
     cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1]:.1f} TWh")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
-
 
     # CHART TITLE
     title = "Saudi Arabia's CO2 & Population Forecast"
@@ -381,7 +380,7 @@ tab1, tab2 = st.tabs([f"CO2 Reduction By Type - {year_end} ", "CO2 Emissions Map
 
 with tab1:
     st.header("Contribution to Total CO2 Reduction")
-
+    st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2'])
 with tab2:
     st.header("2020 Saudi Arabia's CO2 Emissions")
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
