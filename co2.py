@@ -286,6 +286,21 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     df
 
     return fig, df, round(to_target), year_end
+
+def make_pie(df):
+
+    last_row = df.iloc[-1,:]
+    last_row.T
+
+    fig = px.pie(df, values="pct", names="Holder")
+    fig.update_layout(
+        template="plotly_dark",
+        margin=dict(t=0, b=0, l=0, r=0),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        # title={'text': 'TOP 10 HOLDERS', "font": dict(size=24)},
+    )
+    return fig
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -381,6 +396,8 @@ tab1, tab2 = st.tabs([f"CO2 Reduction By Type - {year_end} ", "CO2 Emissions Map
 with tab1:
     st.header("Contribution to Total CO2 Reduction")
     st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
+
+    st.plotly_chart(make_pie(df), use_container_width=True)
     
 with tab2:
     st.header("2020 Saudi Arabia's CO2 Emissions")
