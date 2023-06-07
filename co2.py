@@ -223,12 +223,6 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     cols = ['co2_mt', 'pop']   # these columns will be forcasted
     df = annual_prophecy(df, cols, forecast_period=n)
 
-    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
-    # assume mangroves planting rate is steady
-    df.mangrove.interpolate(method='linear', inplace=True)
-    df.sabic.interpolate(inplace=True)
-    df.utmn_eor.interpolate(inplace=True)
-
     # compute impact of scenarios for dashboard
     annual_impact = np.arange(n) + 1.0
 
@@ -246,6 +240,17 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # Liquid 3
     total_l3 = annual_impact * n_l3_y
     l3_impact = total_l3 * l3_rate_mty
+
+    # include other kingdom efforts
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
+    # assume mangroves planting rate is steady
+    # df.mangrove.interpolate(method='linear', inplace=True)
+    df.mangrove.pad(inplace=True)
+    df.mangrove += annual_impact
+
+    df.sabic.interpolate(inplace=True)
+    df.utmn_eor.interpolate(inplace=True)
+
 
     # Combined future impact
     df['abate2'] = df.abate.pad()
