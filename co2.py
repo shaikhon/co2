@@ -289,7 +289,8 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
 def make_pie(df):
 
-    last_row = df.iloc[-1,:]
+    temp_df = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].reset_index()
+    last_row = temp_df.iloc[-1,:]
     last_row.T
 
     fig = px.pie(df, values="pct", names="Holder")
@@ -398,7 +399,7 @@ with tab1:
     st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
 
     st.plotly_chart(make_pie(df), use_container_width=True)
-    
+
 with tab2:
     st.header("2020 Saudi Arabia's CO2 Emissions")
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
