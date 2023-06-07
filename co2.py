@@ -212,8 +212,9 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
                        2: 'utmn_eor', 3: 'sabic', 4: 'mangrove'},
               inplace=True)
 
-
-    df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000
+    # unit conversions
+    df['co2_mt'] = df.loc[:, 'co2_kt'] / 1000 # kilo ton to million tons
+    df.mangrove *= 1e3 * 1e4 * 50 * 1e-3 * 1e-6 # kilo hectar to mty (assume 50 kg/m2/yr rate)
 
     # convert index to datetime
     df.index = [f"{y}-12-31" for y in df.index]
@@ -246,7 +247,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     # assume mangroves planting rate is steady
     # df.mangrove.interpolate(method='linear', inplace=True)
     df.mangrove.pad(inplace=True)
-    df.mangrove.iloc[-n:] += annual_impact
+    # df.mangrove.iloc[-n:] += annual_impact
 
     df.sabic.interpolate(inplace=True)
     df.utmn_eor.interpolate(inplace=True)
