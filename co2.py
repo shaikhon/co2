@@ -232,12 +232,13 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     co2_wells_impact = total_co2_wells * co2_rate
     df['cwells'] = np.nan
     df['cwells'].iloc[-n:] = co2_wells_impact
-
+    df.cwells.fillna(0, inplace=True)
     # geothermal wells
     total_geo_wells = annual_impact * n_geo_wells
     geo_wells_impact = total_geo_wells * co2_saved_yr
     df['gwells'] = np.nan
     df['gwells'].iloc[-n:] = geo_wells_impact
+    df.gwells.fillna(0, inplace=True)
     power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
 
     # Liquid 3
@@ -245,6 +246,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     l3_impact = total_l3 * l3_rate_mty
     df['l3'] = np.nan
     df['l3'].iloc[-n:] = l3_impact
+    df.l3.fillna(0, inplace=True)
 
     # include other kingdom efforts
     # df['abate'] = df.utmn_eor + df.sabic + df.mangrove
@@ -255,11 +257,11 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     df.utmn_eor.pad(inplace=True)
 
     # Combined future impact
-    df['abate'] = df.utmn_eor + df.sabic + df.mangrove
+    df['abate'] = df.utmn_eor + df.sabic + df.mangrove + df.cwells + df.gwells + df.l3
     # df['abate2'] = df.abate.pad()
 
     # df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
-    df.abate.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
+    # df.abate.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
 
     # total CO2 absorbed
     total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact) * 1e-3   # billion tons
