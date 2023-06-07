@@ -225,7 +225,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove
     # assume mangroves planting rate is steady
-    df.mangrove.interpolate(method='values', inplace=True)
+    df.mangrove.interpolate(method='slinear', inplace=True)
     df.sabic.interpolate(inplace=True)
     df.utmn_eor.interpolate(inplace=True)
 
