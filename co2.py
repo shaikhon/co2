@@ -125,7 +125,7 @@ def prophet_plot(d):
     # plot population Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_x,
                              line=dict(color='magenta', width=2, dash='dash'),
-                             hovertemplate='<i>Pop. Forecast</i>: %{y:.2f}' +
+                             hovertemplate='<i>Pop. Forecast</i>: %{y:d}' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='Pop. Forecast',
                              showlegend=True),
@@ -134,7 +134,7 @@ def prophet_plot(d):
     # plot (CO2 emissions) Actual
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.co2_mt,
                              line=dict(color=color, width=2),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Tons' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2',
                              showlegend=True),
@@ -143,7 +143,7 @@ def prophet_plot(d):
     # plot (CO2 emissions) Forecast
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.yhat_y,
                              line=dict(color=color, width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Tons' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
                              name='CO2 Forecast',
                              showlegend=True),
@@ -152,9 +152,9 @@ def prophet_plot(d):
     # plot (CO2 abatment)
     fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate,
                              line=dict(color='blue', width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
+                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Tons' +
                                            '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='Abatement',
+                             name='CO2 Reduction',
                              showlegend=True),
                   secondary_y=False)
 
