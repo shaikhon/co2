@@ -158,14 +158,14 @@ def prophet_plot(d):
                              showlegend=True),
                   secondary_y=False)
 
-    # plot (CO2 abatment) forecast
-    fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate2,
-                             line=dict(color='blue', width=2, dash='dash'),
-                             hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
-                                           '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-                             name='Abate. Estimate',
-                             showlegend=True),
-                  secondary_y=False)
+    # # plot (CO2 abatment) forecast
+    # fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate2,
+    #                          line=dict(color='blue', width=2, dash='dash'),
+    #                          hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
+    #                                        '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
+    #                          name='Abate. Estimate',
+    #                          showlegend=True),
+    #               secondary_y=False)
 
     fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM Goal",
                   annotation_position="top left",
