@@ -283,8 +283,6 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     fig = prophet_plot(df)
 
-    df
-
     return fig, df, round(to_target), year_end
 
 
