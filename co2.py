@@ -285,7 +285,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     df
 
-    return fig, round(to_target), year_end
+    return fig, df, round(to_target), year_end
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -339,11 +339,11 @@ l3_rate_mty = l3_rate_kgy * 1e-3 * 1e-6 # million tons co2 annually
 with st.container():
 
     # CO2 ML prediction
-    fig, to_target, year_end = co2_ml(
+    fig, df, to_target, year_end = co2_ml(
         n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr,  n_l3, l3_rate_mty)
 
     # total_co2 = sum(df.cwells_co2 + df.gwells_co2 + df.l3_co2) * 1e-3   # billion tons
-    total_co2 = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2']] #.sum()     # billion tons
+    total_co2 = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2']].sum()     # billion tons
     total_co2
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
