@@ -297,9 +297,7 @@ def make_pie(df):
     temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
 
     fig = px.pie(temp_df, values='CO2', names='Method')
-    fig.update_traces(
-        # textposition='outside',
-        textinfo='percent+label',textfont_size=20)
+    fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=18)
 
     fig.update_layout(
         template="plotly_dark",
