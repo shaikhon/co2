@@ -1,6 +1,5 @@
 numpy
 pandas
-scipy
 plotly
 streamlit
 prophet
