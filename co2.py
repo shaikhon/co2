@@ -408,14 +408,13 @@ with tab2:
     st.plotly_chart(co2_map(color_by), use_container_width=True)  # USE COLUMN WIDTH OF CONTAINER
     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
 
-# with st.expander("CO2 Emissions Map - 2020", True):
-#     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
-#     st.plotly_chart(co2_map(color_by), use_container_width=True)   # USE COLUMN WIDTH OF CONTAINER
-#     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
-
 '---'
 
 with st.expander("Did you know?"):
+    st.subheader("Electricity")
     '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
     'where electricity generation is growing 6.3% annually.'
     '- In 2020, the kingdom generated 282 TWh to meet consumer power demand.'
+
+    st.subheader("Desalination")
+    '- The kingdom desalinates 7.6 million cubic meters of water per day'
