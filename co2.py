@@ -400,7 +400,6 @@ with tab1:
 
     arr = np.array([methods, last_row]).T
     temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
-    temp_df
 
     st.plotly_chart(make_pie(temp_df, 'CO2', 'Method'), use_container_width=True)
 
@@ -412,12 +411,10 @@ with tab2:
 
 with tab3:
     st.subheader("2020 Saudi Arabia's CO2 Emissions Contribution")
-    # total_emissions = 426
     sectors = ['Electricity', 'Desalination','Petrochemicals','Refineries','Cement','Iron & Steel','Fertilizer','Ammonia']
     co2_by_sector = [183, 75, 52, 42, 22+12, 18, 14, 7]
     arr2 = np.array([sectors, co2_by_sector]).T
     temp_df2 = pd.DataFrame(arr2, columns=['Sector', 'CO2'])
-    temp_df2
     st.plotly_chart(make_pie(temp_df2, 'CO2', 'Sector'), use_container_width=True)
 
 
