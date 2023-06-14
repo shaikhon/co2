@@ -286,16 +286,9 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     return fig, df, round(to_target), year_end
 
 
-def make_pie(df):
+def make_pie(df, values, names):
 
-    last_row = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].iloc[-1,:].to_list()
-    methods=['CO2 Wells', 'Geothermal Wells','Liquid Trees', 'Mangroves','SABIC','EOR']
-
-    arr = np.array([methods, last_row]).T
-    temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
-    temp_df
-    
-    fig = px.pie(temp_df, values='CO2', names='Method', hole=0.5)
+    fig = px.pie(df, values=values, names=names, hole=0.5)
     fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=18)
 
     fig.update_layout(
@@ -396,18 +389,37 @@ title = "2020 Saudi Arabia's CO2 Emissions"
 st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 # st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{title}</h1>", unsafe_allow_html=True)
 
-tab1, tab2 = st.tabs([f"CO2 Reduction Effectiveness - {year_end} ", "CO2 Emissions Map - 2020"])
+tab1, tab2, tab3 = st.tabs([f"CO2 Reduction Effectiveness - {year_end} ", "CO2 Emissions Map - 2020",
+                      "CO2 Emissions Contribution By Sector - 2020"])
 
 with tab1:
-    st.header(f"Contribution to Total CO2 Reduction by {year_end}")
-    # st.bar_chart(data=df, y=['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor'])
-    st.plotly_chart(make_pie(df), use_container_width=True)
+    st.subheader(f"Contribution to Total CO2 Reduction by {year_end}")
+
+    last_row = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2','mangrove','sabic','utmn_eor']].iloc[-1,:].to_list()
+    methods=['CO2 Wells', 'Geothermal Wells','Liquid Trees', 'Mangroves','SABIC','EOR']
+
+    arr = np.array([methods, last_row]).T
+    temp_df = pd.DataFrame(arr, columns=['Method', 'CO2'])
+    temp_df
+
+    st.plotly_chart(make_pie(temp_df, 'CO2', 'Method'), use_container_width=True)
 
 with tab2:
-    st.header("2020 Saudi Arabia's CO2 Emissions")
+    st.subheader("2020 Saudi Arabia's CO2 Emissions")
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
     st.plotly_chart(co2_map(color_by), use_container_width=True)  # USE COLUMN WIDTH OF CONTAINER
     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
+
+with tab3:
+    st.subheader("2020 Saudi Arabia's CO2 Emissions Contribution")
+    # total_emissions = 426
+    sectors = ['Electricity', 'Desalination','Petrochemicals','Refineries','Cement','Iron & Steel','Fertilizer','Ammonia']
+    co2_by_sector = [183, 75, 52, 42, 22+12, 18, 14, 7]
+    arr2 = np.array([sectors, co2_by_sector]).T
+    temp_df2 = pd.DataFrame(arr2, columns=['Sector', 'CO2'])
+    temp_df2
+    st.plotly_chart(make_pie(temp_df2, 'CO2', 'Sector'), use_container_width=True)
+
 
 '---'
 
