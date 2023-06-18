@@ -423,8 +423,8 @@ with tab3:
 with st.expander("Did you know?"):
 
     st.subheader("The Paris Agreement")
-    '- In 2015, 195 countries agreed to limit the global temperature increase in this century to 2 degrees' \
-    'Celsius'
+    '- In 2015, 195 countries agreed to limit the global temperature increase in this century to 2 degrees ' \
+    'Celsius.'
     '- For the first time ever, CO2 concentration in the atmosphere has exceeded 420 ppm (40% increase from pre-industrial levels).' \
     ' CO2 concentration increases at a rate above 2 ppm per year.'
     st.subheader("Cost")
@@ -433,7 +433,10 @@ with st.expander("Did you know?"):
     st.subheader("Electricity")
     '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
     'where electricity generation is growing 6.3% annually.'
-    '- In 2020, the kingdom generated 282 TWh to meet consumer power demand.'
+    '- In 2020, the kingdom generated 332 TWh to meet consumer power demand.'
 
     st.subheader("Desalination")
     '- The kingdom desalinates 7.6 million cubic meters of water per day'
+    '- The agricultural sector consumes more than 84% of the total national demand for freshwater.'
+    '- Drinking water consumption increases dramatically, with an annual growth rate of about 8%.'
+    ''
