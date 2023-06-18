@@ -289,7 +289,10 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 def make_pie(df, values, names):
 
     fig = px.pie(df, values=values, names=names, hole=0.5)
-    fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=18)
+    fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=18,
+                      hovertemplate='<i>Sector</i>: %{name}<br> '+
+                                  '<i>CO2</i>: %{value} Million Tons </br>',
+                      )
 
     fig.update_layout(
         template="plotly_dark",
