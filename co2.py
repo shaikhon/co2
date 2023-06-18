@@ -291,7 +291,8 @@ def make_pie(df, values, names):
     fig = px.pie(df, values=values, names=names, hole=0.5)
     fig.update_traces(textposition='inside', textinfo='percent+label',textfont_size=18,
                       hovertemplate='%{label}<br> '+
-                                  '<i>CO2</i>: %{value} Million Tons </br>',
+                                  '<i>CO2</i>: %{value} Million Tons </br>'+
+                                    '<i>Percent</i>: %{percent} %',
                       )
 
     fig.update_layout(
