@@ -421,6 +421,15 @@ with tab3:
 '---'
 
 with st.expander("Did you know?"):
+
+    st.subheader("The Paris Agreement")
+    '- In 2015, 195 countries agreed to limit the global temperature increase in this century to 2 degrees' \
+    'Celsius'
+    '- For the first time ever, CO2 concentration in the atmosphere has exceeded 420 ppm (40% increase from pre-industrial levels).' \
+    ' CO2 concentration increases at a rate above 2 ppm per year.'
+    st.subheader("Cost")
+    '- McKinsey Global Institute has estimated that a net zero world will cost around $275 trillion by 2050'
+
     st.subheader("Electricity")
     '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
     'where electricity generation is growing 6.3% annually.'
