@@ -300,7 +300,6 @@ def make_pie(df, values, names):
         margin=dict(t=0, b=0, l=0, r=0),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        # title={'text': 'TOP 10 HOLDERS', "font": dict(size=24)},
     )
     return fig
 ####################################################################################
