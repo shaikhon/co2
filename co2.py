@@ -314,9 +314,10 @@ co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=0.5,max_v
 n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=5,step=1,
                                    help="Number of geothermal wells drilled annually.")
 
-power_capacity = cols[-1].slider('Power Capacity (MW):',min_value=0.5,max_value=50.0,value=1.0,step=0.5,
+power_capacity = cols[-1].slider('Power Capacity (MW):',min_value=0.5,max_value=50.0,value=1.5,step=0.5,
                           help="Average power capacity per well in Megawatts (MW). This rate will be "
                                "converted to KWh, assuming the well is generating power 24/7.")
+
 power_kwh = power_capacity * 1e3 # kwh
 co2_saved_yr = power_kwh * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
 
@@ -353,13 +354,13 @@ with st.container():
     # COMPUTE METRICS
     total_co2 = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2']].sum().sum() * 1e-3    # billion tons
     total_power = df.power_gen_y.sum()
+
     # DISPLAY METRICS
     cols2[1].metric('Total CO2 Wells Drilled', f"{millify(df.cwells[-1])}")
     cols2[2].metric('Total Geothermal Wells Drilled', f"{millify(df.gwells[-1])}")
     cols2[3].metric('Total Liquid Trees Installed', f"{millify(df.l3[-1])}")
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2:.1f} BT")
-    cols2[2].metric('Total Power Generated', f"{total_power:.1f} TWh")
-    # cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1]:.1f} TWh")
+    cols2[2].metric('Total Clean Power Generated', f"{total_power:.1f} TWh")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
