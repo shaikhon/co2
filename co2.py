@@ -423,7 +423,8 @@ with st.expander("Did you know?"):
     ' CO2 concentration increases at a rate above 2 ppm per year.'
     st.subheader("Cost")
     '- McKinsey Global Institute has estimated that a net zero world will cost around $275 trillion by 2050'
-    st.markdown("source: [Aramco's 2022 Sustainability Report](https://www.aramco.com/en/sustainability/sustainability-report)")
+    "- source: [Aramco's 2022 Sustainability Report](https://www.aramco.com/en/sustainability/sustainability-report)"
+    # st.markdown("source: [Aramco's 2022 Sustainability Report](https://www.aramco.com/en/sustainability/sustainability-report)")
 
 
     st.subheader("Electricity")
