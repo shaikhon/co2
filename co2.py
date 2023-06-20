@@ -311,7 +311,7 @@ co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=0.5,max_v
                                "A typical CO2 storage well has a rate of 10 Mt/yr, while an enhanced oil recovery well"
                                " has a rate of 1-5 Mt/yr.")
 # geothermal wells:
-n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=5,step=1,
+n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=6,step=1,
                                    help="Number of geothermal wells drilled annually.")
 
 power_capacity = cols[-1].slider('Power Capacity (MW):',min_value=0.5,max_value=50.0,value=1.5,step=0.5,
