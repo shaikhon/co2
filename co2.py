@@ -1,4 +1,3 @@
-# import plotly.graph_objects as go
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -231,7 +230,7 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_kwh, co2_saved_yr, n_l3_y, 
     # geothermal wells
     df['gwells'] = 0
     df['gwells'].iloc[-n:] = annual_impact * n_geo_wells
-    df['gwells_co2'] = df.gwells * co2_saved_yr
+    df['gwells_co2'] = df.gwells * co2_saved_yr           # mty
     df['power_gen_y'] = df.gwells * power_kwh * 24 * 365 * 1e-9  # TWh = 1e12 watt, net generation per year
 
     # Liquid 3
@@ -353,13 +352,14 @@ with st.container():
 
     # COMPUTE METRICS
     total_co2 = df.loc[:,['cwells_co2', 'gwells_co2','l3_co2']].sum().sum() * 1e-3    # billion tons
-
+    total_power = df.power_gen_y.sum()
     # DISPLAY METRICS
     cols2[1].metric('Total CO2 Wells Drilled', f"{millify(df.cwells[-1])}")
     cols2[2].metric('Total Geothermal Wells Drilled', f"{millify(df.gwells[-1])}")
     cols2[3].metric('Total Liquid Trees Installed', f"{millify(df.l3[-1])}")
     cols2[1].metric('Total CO2 Absorbed', f"{total_co2:.1f} BT")
-    cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1]:.1f} TWh")
+    cols2[2].metric('Total Power Generated', f"{total_power:.1f} TWh")
+    # cols2[2].metric('Total Power Generated', f"{df.power_gen_y[-1]:.1f} TWh")
     cols2[3].metric('Percent from 2030 Target', f"{to_target} %")
     '---'
 
@@ -416,6 +416,7 @@ with st.expander("Did you know?"):
     'Celsius.'
     '- For the first time ever, CO2 concentration in the atmosphere has exceeded 420 ppm (40% increase from pre-industrial levels).' \
     ' CO2 concentration increases at a rate above 2 ppm per year.'
+
     st.subheader("Cost")
     '- McKinsey Global Institute has estimated that a net zero world will cost around $275 trillion by 2050'
     "- source: [Aramco's 2022 Sustainability Report](https://www.aramco.com/en/sustainability/sustainability-report)"
@@ -424,9 +425,14 @@ with st.expander("Did you know?"):
     '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
     'where electricity generation is growing 6.3% annually.'
     '- In 2020, the kingdom generated 332 TWh to meet consumer power demand.'
+    '- In KSA, Each KWh of electricity generated from clean energy sources, save 650 grams of CO2 from going into the ' \
+    'atmosphere.'
 
     st.subheader("Desalination")
     '- The kingdom desalinates 7.6 million cubic meters of water per day'
     '- The agricultural sector consumes more than 84% of the total national demand for freshwater.'
     '- Drinking water consumption increases dramatically, with an annual growth rate of about 8%.'
+
+    st.subheader("Liquid Trees")
+    '- Liquid trees can help offset GHG emissions from hard-to-abate sectors.'
     ''
