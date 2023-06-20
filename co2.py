@@ -318,7 +318,7 @@ n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_va
 power_capacity = cols[-1].slider('Power Capacity (MW):',min_value=0.5,max_value=50.0,value=1.0,step=0.5,
                           help="Average power capacity per well in Megawatts (MW). This rate will be "
                                "converted to KWh, assuming the well is generating power 24/7.")
-power_kwh = power_capacity * 365 * 24 * 1e3 # kwh
+power_kwh = power_capacity * 1e3 # kwh
 co2_saved_yr = power_kwh * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
 
 # Liquid Trees:
@@ -343,7 +343,7 @@ with st.container():
         n_co2_wells, co2_rate, n_geo_wells, power_kwh, co2_saved_yr,  n_l3, l3_rate_mty)
 
     df
-    
+
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
                 unsafe_allow_html=True)
