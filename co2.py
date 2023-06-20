@@ -342,6 +342,8 @@ with st.container():
     fig, df, to_target, year_end = co2_ml(
         n_co2_wells, co2_rate, n_geo_wells, power_kwh, co2_saved_yr,  n_l3, l3_rate_mty)
 
+    df
+    
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
                 unsafe_allow_html=True)
