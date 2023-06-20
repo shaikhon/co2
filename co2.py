@@ -158,22 +158,19 @@ def prophet_plot(d):
                              showlegend=True),
                   secondary_y=False)
 
-    # # plot (CO2 abatment) forecast
-    # fig.add_trace(go.Scatter(mode='lines', x=x, y=d.abate2,
-    #                          line=dict(color='blue', width=2, dash='dash'),
-    #                          hovertemplate='<i>CO2</i>: %{y:.2f} Million Ton' +
-    #                                        '<br><i>Year</i>: %{x|%Y}<br><extra></extra>',
-    #                          name='Abate. Estimate',
-    #                          showlegend=True),
-    #               secondary_y=False)
 
-    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM Goal",
+    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM KSA Goal",
+                  annotation_position="top left",
+                  annotation_font_size=14,
+                  )
+
+    fig.add_hline(y=52, line_width=3, line_dash="dash", line_color="purple", annotation_text="2035 52MM Aramco Goal",
                   annotation_position="top left",
                   annotation_font_size=14,
                   )
 
     fig.add_hline(y=d.yhat_y.iloc[-1], line_width=3, line_dash="dash", line_color="cyan",
-                  annotation_text="2060 Net-zero Goal",
+                  annotation_text="2060 Net-zero KSA Goal",
                   annotation_position="top left",
                   annotation_font_size=14,
                   )
@@ -196,7 +193,7 @@ def prophet_plot(d):
     return fig
 
 
-def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_y, l3_rate_mty):
+def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_kwh, co2_saved_yr, n_l3_y, l3_rate_mty):
 
     fnames = glob.glob('./data/*.csv')
     n = 15  # future forecast years
@@ -228,30 +225,21 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     annual_impact = np.arange(n) + 1.0
 
     # co2 wells
-    # total_co2_wells = annual_impact * n_co2_wells
-    # co2_wells_impact = total_co2_wells * co2_rate
     df['cwells'] = 0
     df['cwells'].iloc[-n:] = annual_impact * n_co2_wells
     df['cwells_co2'] = df.cwells * co2_rate
     # geothermal wells
-    # total_geo_wells = annual_impact * n_geo_wells
-    # geo_wells_impact = total_geo_wells * co2_saved_yr
     df['gwells'] = 0
     df['gwells'].iloc[-n:] = annual_impact * n_geo_wells
     df['gwells_co2'] = df.gwells * co2_saved_yr
-    df['power_gen_y'] = df.gwells * power_rate_y * 1e-6  # TWh
-    # power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
+    df['power_gen_y'] = df.gwells * power_kwh * 24 * 365 * 1e-9  # TWh = 1e12 watt, net generation per year
 
     # Liquid 3
-    # total_l3 = annual_impact * n_l3_y
-    # l3_impact = total_l3 * l3_rate_mty
     df['l3'] = 0
     df['l3'].iloc[-n:] = annual_impact * n_l3_y
     df['l3_co2'] = df.l3 * l3_rate_mty
 
     # include other kingdom efforts
-    # df['abate'] = df.utmn_eor + df.sabic + df.mangrove
-
     df.mangrove.pad(inplace=True)
     df.mangrove.iloc[-n:] += (annual_impact * 0.5)     # assume mangroves planting rate is steady
     df.sabic.pad(inplace=True)
@@ -259,19 +247,14 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     # Combined future impact
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove + df.cwells_co2 + df.gwells_co2 + df.l3_co2
-    # df['abate2'] = df.abate.pad()
 
-    # df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
-    # df.abate.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
+    # CO2 absorption targets 2030, 2035
+    dt_2030 = pd.to_datetime(['2030','2031'])
+    # dt_2035 = pd.to_datetime(['2034','2036'])
 
-    # total CO2 absorbed
-    # total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact) * 1e-3   # billion tons
+    co2_2030 = df.abate.loc[(df.index >= dt_2030[0]) & (df.index <= dt_2030[-1])].values[0]
 
-    # CO2 absorption rate by 2030
-    dt = pd.to_datetime(['2030','2031'])
-    co2_2030 = df.abate.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
-
-    # get % to meet target
+    # get % to meet KSA's target
     to_target = (co2_2030/278)*100
 
     # get last forcast year
@@ -300,7 +283,6 @@ def make_pie(df, values, names):
         margin=dict(t=0, b=0, l=0, r=0),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        # title={'text': 'TOP 10 HOLDERS', "font": dict(size=24)},
     )
     return fig
 ####################################################################################
@@ -332,11 +314,12 @@ co2_rate = cols[-1].slider('CO2 sequestration rate (Mt/yr):',min_value=0.5,max_v
 # geothermal wells:
 n_geo_wells = cols[0].number_input('No. of geothermal wells:',min_value=0,max_value=None,value=5,step=1,
                                    help="Number of geothermal wells drilled annually.")
-power_rate_d = cols[-1].slider('Power output (MWh/day):',min_value=0.5,max_value=50.0,value=1.0,step=0.5,
-                          help="Average power output per well in mega watt hours (MWh) per day. This rate will be "
-                               "multiplied by 365, assuming the well is running 24/7.")
-power_rate_y = power_rate_d * 365 * 1000 # kwh/yr
-co2_saved_yr = power_rate_y * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
+
+power_capacity = cols[-1].slider('Power Capacity (MW):',min_value=0.5,max_value=50.0,value=1.0,step=0.5,
+                          help="Average power capacity per well in Megawatts (MW). This rate will be "
+                               "converted to KWh, assuming the well is generating power 24/7.")
+power_kwh = power_capacity * 365 * 24 * 1e3 # kwh
+co2_saved_yr = power_kwh * 0.65 * 1e-3 * 1e-6  # million tons CO2 annually
 
 # Liquid Trees:
 n_l3 = cols[0].number_input('No. of Liquid Trees:', 0, None, 100, 100,help="Number of liquid trees installed annually")
@@ -357,7 +340,7 @@ with st.container():
 
     # CO2 ML prediction
     fig, df, to_target, year_end = co2_ml(
-        n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr,  n_l3, l3_rate_mty)
+        n_co2_wells, co2_rate, n_geo_wells, power_kwh, co2_saved_yr,  n_l3, l3_rate_mty)
 
     # METRICS TITLE
     st.markdown(f"<h1 style='text-align: center; color: white; font-size: medium'>{year_end} SUSTAINABILITY DASHBOARD</h1>",
@@ -410,13 +393,13 @@ with tab1:
 with tab2:
     st.subheader("2020 Saudi Arabia's CO2 Emissions")
     color_by = st.selectbox('Color by:', ['Sector', 'Province', 'Primary Fuel', 'Unit Type'], 0)
-    st.plotly_chart(co2_map(color_by), use_container_width=True)  # USE COLUMN WIDTH OF CONTAINER
+    st.plotly_chart(co2_map(color_by), use_container_width=True)
     st.markdown("source: [Rowaihy et al., 2022](https://www.sciencedirect.com/science/article/pii/S2590174522001222)")
 
 with tab3:
     st.subheader("2020 Saudi Arabia's CO2 Emissions Contribution")
     sectors = ['Electricity', 'Desalination','Petrochemicals','Refineries','Cement','Iron & Steel','Fertilizer','Ammonia']
-    co2_by_sector = [183, 75, 52, 42, 22+12, 18, 14, 7]
+    co2_by_sector = [183, 75, 52, 42, 22+12, 18, 14, 7] # Hamieh et al., 2022
     arr2 = np.array([sectors, co2_by_sector]).T
     temp_df2 = pd.DataFrame(arr2, columns=['Sector', 'CO2'])
     st.plotly_chart(make_pie(temp_df2, 'CO2', 'Sector'), use_container_width=True)
@@ -433,6 +416,7 @@ with st.expander("Did you know?"):
     ' CO2 concentration increases at a rate above 2 ppm per year.'
     st.subheader("Cost")
     '- McKinsey Global Institute has estimated that a net zero world will cost around $275 trillion by 2050'
+    "- source: [Aramco's 2022 Sustainability Report](https://www.aramco.com/en/sustainability/sustainability-report)"
 
     st.subheader("Electricity")
     '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
