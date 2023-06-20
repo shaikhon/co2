@@ -167,13 +167,18 @@ def prophet_plot(d):
     #                          showlegend=True),
     #               secondary_y=False)
 
-    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM Goal",
+    fig.add_hline(y=278, line_width=3, line_dash="dash", line_color="yellow", annotation_text="2030 278MM KSA Goal",
+                  annotation_position="top left",
+                  annotation_font_size=14,
+                  )
+
+    fig.add_hline(y=52, line_width=3, line_dash="dash", line_color="purple", annotation_text="2035 52MM Aramco Goal",
                   annotation_position="top left",
                   annotation_font_size=14,
                   )
 
     fig.add_hline(y=d.yhat_y.iloc[-1], line_width=3, line_dash="dash", line_color="cyan",
-                  annotation_text="2060 Net-zero Goal",
+                  annotation_text="2060 Net-zero KSA Goal",
                   annotation_position="top left",
                   annotation_font_size=14,
                   )
@@ -228,30 +233,21 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
     annual_impact = np.arange(n) + 1.0
 
     # co2 wells
-    # total_co2_wells = annual_impact * n_co2_wells
-    # co2_wells_impact = total_co2_wells * co2_rate
     df['cwells'] = 0
     df['cwells'].iloc[-n:] = annual_impact * n_co2_wells
     df['cwells_co2'] = df.cwells * co2_rate
     # geothermal wells
-    # total_geo_wells = annual_impact * n_geo_wells
-    # geo_wells_impact = total_geo_wells * co2_saved_yr
     df['gwells'] = 0
     df['gwells'].iloc[-n:] = annual_impact * n_geo_wells
     df['gwells_co2'] = df.gwells * co2_saved_yr
     df['power_gen_y'] = df.gwells * power_rate_y * 1e-6  # TWh
-    # power_generated_y = total_geo_wells * power_rate_y * 1e-6 # TWh
 
     # Liquid 3
-    # total_l3 = annual_impact * n_l3_y
-    # l3_impact = total_l3 * l3_rate_mty
     df['l3'] = 0
     df['l3'].iloc[-n:] = annual_impact * n_l3_y
     df['l3_co2'] = df.l3 * l3_rate_mty
 
     # include other kingdom efforts
-    # df['abate'] = df.utmn_eor + df.sabic + df.mangrove
-
     df.mangrove.pad(inplace=True)
     df.mangrove.iloc[-n:] += (annual_impact * 0.5)     # assume mangroves planting rate is steady
     df.sabic.pad(inplace=True)
@@ -259,19 +255,14 @@ def co2_ml(n_co2_wells, co2_rate, n_geo_wells, power_rate_y, co2_saved_yr, n_l3_
 
     # Combined future impact
     df['abate'] = df.utmn_eor + df.sabic + df.mangrove + df.cwells_co2 + df.gwells_co2 + df.l3_co2
-    # df['abate2'] = df.abate.pad()
 
-    # df.abate2.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
-    # df.abate.iloc[-n:] += l3_impact + co2_wells_impact + geo_wells_impact
+    # CO2 absorption targets 2030, 2035
+    dt_2030 = pd.to_datetime(['2030','2031'])
+    # dt_2035 = pd.to_datetime(['2034','2036'])
 
-    # total CO2 absorbed
-    # total_co2 = sum(l3_impact + co2_wells_impact + geo_wells_impact) * 1e-3   # billion tons
+    co2_2030 = df.abate.loc[(df.index >= dt_2030[0]) & (df.index <= dt_2030[-1])].values[0]
 
-    # CO2 absorption rate by 2030
-    dt = pd.to_datetime(['2030','2031'])
-    co2_2030 = df.abate.loc[(df.index >= dt[0]) & (df.index <= dt[-1])].values[0]
-
-    # get % to meet target
+    # get % to meet KSA's target
     to_target = (co2_2030/278)*100
 
     # get last forcast year
@@ -432,6 +423,8 @@ with st.expander("Did you know?"):
     ' CO2 concentration increases at a rate above 2 ppm per year.'
     st.subheader("Cost")
     '- McKinsey Global Institute has estimated that a net zero world will cost around $275 trillion by 2050'
+    st.markdown("source: [Aramco's 2022 Sustainability Report](https://www.aramco.com/en/sustainability/sustainability-report)")
+
 
     st.subheader("Electricity")
     '- The electricity sector is the largest consumer of domestic oil and gas in KSA, ' \
