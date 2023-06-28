@@ -3,8 +3,9 @@
 Webpage Link: https://net0thon.streamlit.app/
 
 Description:
-This repo is a web app of a dashboard that uses ML to track CO2 abatement rates in Saudi Arabia. 
-This webpage was built as part of a solution to a climate-change hackathon (*Net0thon*) organized by Saudi Aramco in Dhahran, Saudi Arabia on May 28th, 2023.
+This repo is a web app of a dashboard that uses ML to predict the population and CO2 emission rates in Saudi Arabia. 
+It also tracks real CO2 abatement data from local efforts, and has gives you the ability to build CO2 abatement scenarios
+using geothermal wells and CO2 sequestration wells. This webpage was built as part of a solution to a climate-change hackathon (*Net0thon*) organized by Saudi Aramco in Dhahran, Saudi Arabia on May 28th, 2023.
 
 Objective:
 Using this webpage you can test different scenarios of CO2 abatement strategies to accelarate the Kingdom's targets of:
