@@ -1,6 +1,6 @@
 # CO2 Dashboard
 
-Webpage Link: https://net0thon.streamlit.app/
+Webpage Link: https://netzero.streamlit.app/
 
 Description:
 This repo is a web app of a dashboard that uses ML to predict the population and CO2 emission rates in Saudi Arabia. 
