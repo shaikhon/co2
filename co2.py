@@ -17,6 +17,24 @@ st.set_page_config(
                 'About':"The Green Guardian's team effort in Net0thon to combat climate change."}
 )
 
+
+def convert(quantity, source_unit, target_unit, R):
+  """Converts a quantity from one unit to another using a relationship R.
+
+  Args:
+    quantity: The quantity to convert.
+    source_unit: The unit of the quantity.
+    target_unit: The unit to convert the quantity to.
+    R: The relationship between the two units.
+
+  Returns:
+    The converted quantity.
+  """
+
+  return quantity * R[source_unit][target_unit]
+
+
+
 def millify(n):
     # millnames = ['', ' Thousand', ' Million', ' Billion', ' Trillion']
     millnames = ['', ' K', ' M', ' B', ' T']
@@ -435,3 +453,20 @@ with st.expander("Did you know?"):
     st.subheader("Liquid Trees")
     '- Liquid trees can help offset GHG emissions from hard-to-abate sectors.'
     ''
+    
+    
+with st.expander("Conversion Calculator"):
+    
+    # Define the relationship between the two units.
+    R = {
+        'Celsius': {'Fahrenheit': 9 / 5 + 32},
+        'Fahrenheit': {'Celsius': 5 / 9 - 32},
+    }
+    
+    # Convert 100 Celsius to Fahrenheit.
+    converted_quantity = convert(100, 'Celsius', 'Fahrenheit', R)
+    
+    # Print the converted quantity.
+    st.write(converted_quantity)
+    
+    
